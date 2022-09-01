@@ -1,10 +1,13 @@
 import 'package:withings_flutter/src/urls/withingsAPIURL.dart';
 
+/// [WithingsAuthAPIURL] is a class that expresses multiple factory
+/// constructors to be used to generate Withings Web APIs urls to
+/// be used by [WithingsConnector].
 class WithingsAuthAPIURL extends WithingsAPIURL {
-  ///The data to be attached to the url.
+  /// The data to be attached to the url.
   Map<String, dynamic>? data;
 
-  ///Default [WithingsAuthAPIURL] constructor.
+  /// Default [WithingsAuthAPIURL] constructor.
   WithingsAuthAPIURL({String? url, Map<String, dynamic>? data}) {
     // super fields
     this.url = url;
@@ -13,8 +16,8 @@ class WithingsAuthAPIURL extends WithingsAPIURL {
     this.data = data;
   } // WithingsAuthAPIURL
 
-  ///Factory constructor that generates a [WithingsAuthAPIURL] to be used
-  ///to get to the Withings authorization form
+  /// Factory constructor that generates a [WithingsAuthAPIURL] to be used
+  /// to get to the Withings authorization form
   factory WithingsAuthAPIURL.authorizeForm({
     required String clientID,
     required String state,
@@ -25,16 +28,16 @@ class WithingsAuthAPIURL extends WithingsAPIURL {
       url: Uri.https('account.withings.com', 'oauth2_user/authorize2', {
         'response_type': 'code',
         'client_id': clientID,
-        'state': state, //check if spoof or not in the response
+        'state': state, // check if spoof or not in the response
         'scope': scope,
         'redirect_uri': redirectUri,
       }).toString(),
       data: null,
     );
-  } //WithingsAuthAPIURL.authorizeForm
+  } // WithingsAuthAPIURL.authorizeForm
 
-  ///Factory constructor that generates a [WithingsAuthAPIURL] to be used
-  ///to get the access and refresh tokens
+  /// Factory constructor that generates a [WithingsAuthAPIURL] to be used
+  /// to get the access and refresh tokens
   factory WithingsAuthAPIURL.authorize({
     required String clientID,
     required String clientSecret,
@@ -51,10 +54,10 @@ class WithingsAuthAPIURL extends WithingsAPIURL {
           'code': authorizationCode,
           'redirect_uri': redirectUri,
         });
-  } //WithingsAuthAPIURL.authorize
+  } // WithingsAuthAPIURL.authorize
 
-  ///Factory constructor that generates a [WithingsAuthAPIURL] to be used
-  ///to refresh the access token
+  /// Factory constructor that generates a [WithingsAuthAPIURL] to be used
+  /// to refresh the access token
   factory WithingsAuthAPIURL.refreshToken(
       {required String clientID,
       required String clientSecret,
@@ -69,6 +72,6 @@ class WithingsAuthAPIURL extends WithingsAPIURL {
         'refresh_token': refreshToken
       },
     );
-  } //WithingsAuthAPIURL.refreshToken
+  } // WithingsAuthAPIURL.refreshToken
 
 }
