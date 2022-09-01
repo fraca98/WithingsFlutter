@@ -11,8 +11,10 @@ export 'package:withings_flutter/src/urls/withingsHeartAPIURL.dart';
 //Data
 export 'package:withings_flutter/src/data/withingsData.dart';
 export 'package:withings_flutter/src/data/withingsHeartGetData.dart';
+export 'package:withings_flutter/src/data/withingsHeartListData.dart';
 
 //Managers
 export 'package:withings_flutter/src/managers/withingsDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsHeartGetDataManager.dart';
+export 'package:withings_flutter/src/managers/withingsHeartListDataManager.dart';
 

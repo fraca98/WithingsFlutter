@@ -18,12 +18,12 @@ class WithingsHeartGetData implements WithingsData {
     this.wearposition,
   });
 
-  /// Default [WithingsHeartGetData] constructor.
-  factory WithingsHeartGetData.fromJson({required Map<String, dynamic> json}) {
+  /// Default [WithingsHeartGetData] constructor
+  factory WithingsHeartGetData.fromJson(Map<String, dynamic> json) {
     return WithingsHeartGetData(
-      signal: json['signal'],
-      samplingfrequency: json['samplingfrequency'],
-      wearposition: json['wearposition'],
+      signal: json['body']['signal'].cast<int>(),
+      samplingfrequency: json['body']['samplingfrequency'],
+      wearposition: json['body']['wearposition'],
     );
   }
 

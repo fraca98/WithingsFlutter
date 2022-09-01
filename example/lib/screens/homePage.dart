@@ -44,15 +44,24 @@ class HomePage extends StatelessWidget {
               },
               child: Text('Refresh token'),
             ),
-
             ElevatedButton(
               onPressed: () async {
                 //Instantiate a proper data manager
-                WithingsHeartGetDataManager
-                    withingsHeartDataGetManager =
+                WithingsHeartGetDataManager withingsHeartDataGetManager =
                     WithingsHeartGetDataManager(
-                      accessToken: 'fb256e150bdf0d4059f1f7b89cfbb5aa9688b16d',
+                  accessToken: '0eb4635c655c091840b537eb694c39aa5b72c695',
                 );
+
+                /*final getheartdata =
+                    await WithingsHeartListDataManager(
+                                accessToken:
+                                    '0eb4635c655c091840b537eb694c39aa5b72c695')
+                            .fetch(WithingsHeartAPIURL.list(
+                                startdate: 1661873383,
+                                enddate: 1661884183,
+                                accessToken:
+                                    '0eb4635c655c091840b537eb694c39aa5b72c695'))
+                        as WithingsHeartListData; //working */
 
                 /*final getheartdata = await withingsHeartDataGetManager
                     .fetch(WithingsHeartAPIURL.get(
@@ -60,8 +69,6 @@ class HomePage extends StatelessWidget {
                       signalId: 157847052,
 
                 )) as WithingsHeartGetData; //working*/
-
-                
               },
               child: Text('Test heart'),
             ),

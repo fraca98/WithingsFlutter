@@ -3,20 +3,17 @@ import 'package:dio/dio.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 
 abstract class WithingsDataManager {
-
   /// The access token
   String accessToken;
 
   /// Default constructor
   WithingsDataManager({required this.accessToken});
 
-
   /// Method that fetches data from the Withings API.
   Future<void> fetch(WithingsAPIURL url);
 
   /// Method the obtains the response from the given [WithingsAPIURL].
   Future<dynamic> getResponse(WithingsAPIURL withingsUrl) async {
-
     // Instantiate Dio and its Response
     Dio dio = Dio();
     late Response response;
@@ -33,7 +30,7 @@ abstract class WithingsDataManager {
           },
         ),
       );
-    } on DioError catch (e) { //TODO: gestione no internet connection
+    } on DioError catch (e) {
       print(e);
     } // try - catch
 
@@ -44,3 +41,5 @@ abstract class WithingsDataManager {
     return ret;
   } //getResponse
 }
+
+ //TODO: gestione no internet connection

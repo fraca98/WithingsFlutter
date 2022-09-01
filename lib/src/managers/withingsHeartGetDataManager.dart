@@ -9,7 +9,7 @@ class WithingsHeartGetDataManager extends WithingsDataManager {
         );
 
   @override
-  Future<dynamic> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -18,18 +18,14 @@ class WithingsHeartGetDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsHeartGetData ret = _extractWithingsHeartGetData(response);
+    WithingsData ret = _extractWithingsHeartGetData(response);
     return ret;
   } // fetch
 
   /// A private method that extracts [WithingsHeartGetData] from the given response.
   WithingsHeartGetData _extractWithingsHeartGetData(dynamic response) {
     if (response['status'] == 0) {
-      return WithingsHeartGetData(
-        signal: response['body']['signal'].cast<int>(),
-        samplingfrequency: response['body']['samplingfrequency'],
-        wearposition: response['body']['wearposition'],
-      );
+      return WithingsHeartGetData.fromJson(response);
     } else {
       return WithingsHeartGetData();
     }
