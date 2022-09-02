@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 import '../utils/strings.dart';
@@ -46,13 +48,7 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                //Instantiate a proper data manager
-                WithingsHeartGetDataManager withingsHeartDataGetManager =
-                    WithingsHeartGetDataManager(
-                  accessToken: '0eb4635c655c091840b537eb694c39aa5b72c695',
-                );
-
-                /*final getheartdata =
+                /*final listheartdata =
                     await WithingsHeartListDataManager(
                                 accessToken:
                                     '0eb4635c655c091840b537eb694c39aa5b72c695')
@@ -63,11 +59,11 @@ class HomePage extends StatelessWidget {
                                     '0eb4635c655c091840b537eb694c39aa5b72c695'))
                         as WithingsHeartListData; //working */
 
-                /*final getheartdata = await withingsHeartDataGetManager
+                /*final getheartdata = await WithingsHeartGetDataManager(
+                        accessToken: '0eb4635c655c091840b537eb694c39aa5b72c695')
                     .fetch(WithingsHeartAPIURL.get(
-                      accessToken: withingsHeartDataGetManager.accessToken, 
-                      signalId: 157847052,
-
+                  accessToken: '0eb4635c655c091840b537eb694c39aa5b72c695',
+                  signalId: 157847052,
                 )) as WithingsHeartGetData; //working*/
               },
               child: Text('Test heart'),

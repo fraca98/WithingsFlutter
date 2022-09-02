@@ -1,14 +1,18 @@
 import 'package:withings_flutter/withings_flutter.dart';
 
+/// [WithingsHeartListData] is a class that returns a list of ECG records and Afib classification for a given period of time
 class WithingsHeartListData implements WithingsData {
+  /// Response status
   int? status;
-  Body? body;
+
+  /// Response data
+  BodyHeartList? body;
 
   WithingsHeartListData({this.status, this.body});
 
   WithingsHeartListData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'] != null ? Body.fromJson(json['body']) : null;
+    body = json['body'] != null ? BodyHeartList.fromJson(json['body']) : null;
   }
 
   @override
@@ -20,14 +24,19 @@ class WithingsHeartListData implements WithingsData {
   }
 }
 
-class Body {
+class BodyHeartList {
+  /// Array of objects
   List<Series>? series;
+
+  /// To know if there is more data to fetch or not
   bool? more;
+
+  /// Offset to use to retrieve the next data
   int? offset;
 
-  Body({this.series, this.more, this.offset});
+  BodyHeartList({this.series, this.more, this.offset});
 
-  Body.fromJson(Map<String, dynamic> json) {
+  BodyHeartList.fromJson(Map<String, dynamic> json) {
     if (json['series'] != null) {
       series = <Series>[];
       json['series'].forEach((v) {
@@ -50,12 +59,25 @@ class Body {
 }
 
 class Series {
+  /// ID of device that tracked the data
   String? deviceid;
+
+  /// The source of the recording
   int? model;
+
+  /// Object ecg
   Ecg? ecg;
+
+  /// Object bloodpressure
   Bloodpressure? bloodpressure;
+
+  /// Average recorded heart rate
   int? heartRate;
+
+  /// Timestamp of the recording
   int? timestamp;
+
+  /// Timezone for the date
   String? timezone;
 
   Series(
@@ -97,7 +119,10 @@ class Series {
 }
 
 class Ecg {
+  /// Id of the signal
   int? signalid;
+
+  /// Atrial fibrillation classification
   int? afib;
 
   Ecg({this.signalid, this.afib});
@@ -116,7 +141,10 @@ class Ecg {
 }
 
 class Bloodpressure {
+  /// Diastole value
   int? diastole;
+
+  /// Systole value
   int? systole;
 
   Bloodpressure({this.diastole, this.systole});
