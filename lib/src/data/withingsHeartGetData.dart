@@ -13,7 +13,7 @@ class WithingsHeartGetData implements WithingsData {
 
   WithingsHeartGetData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'] != null ? BodyHeartGet.fromJson(json['body']) : null;
+    body = json['body'].isNotEmpty ? BodyHeartGet.fromJson(json['body']) : null;
   }
 
   @override

@@ -1,9 +1,9 @@
 import 'package:logger/logger.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 
-/// [WithingsHeartGetDataManager] is a class the manages the requests related to [WithingsSleepGetData]
-class WithingsHeartGetDataManager extends WithingsDataManager {
-  WithingsHeartGetDataManager({required String accessToken})
+/// [WithingsSleepGetDataManager] is a class the manages the requests related to [WithingsSleepGetData]
+class WithingsSleepGetDataManager extends WithingsDataManager {
+  WithingsSleepGetDataManager({required String accessToken})
       : super(
           accessToken: accessToken,
         );
@@ -18,17 +18,17 @@ class WithingsHeartGetDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsData ret = _extractWithingsHeartGetData(response);
+    WithingsData ret = _extractWithingsSleepGetData(response);
     return ret;
   } // fetch
 
   /// A private method that extracts [WithingsSleepGetData] from the given response.
-  WithingsSleepGetData _extractWithingsHeartGetData(dynamic response) {
+  WithingsSleepGetData _extractWithingsSleepGetData(dynamic response) {
     if (response['status'] == 0) {
       return WithingsSleepGetData.fromJson(response);
     } else {
       return WithingsSleepGetData();
     }
-  } // _extractWithingsHeartGetData
+  } // _extractWithingsSleepGetData
 }
- // WithingsHeartGetDataManager
+ // WithingsSleepGetDataManager

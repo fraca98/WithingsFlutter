@@ -68,6 +68,42 @@ class HomePage extends StatelessWidget {
               },
               child: Text('Test heart'),
             ),
+            ElevatedButton(
+              onPressed: () async {
+                /*final getsleepdata = await WithingsSleepGetDataManager(
+                  accessToken: '8a39e1aff6f46539cb0a8b2b2738bb96e03f5acf').fetch(
+                    WithingsSleepAPIURL.get(
+                      accessToken: '8a39e1aff6f46539cb0a8b2b2738bb96e03f5acf', 
+                      enddate: 1661843651, 
+                      startdate: 1661825651,
+                      dataFields: 'hr',
+
+                    )
+                  ) as WithingsSleepGetData;// */
+
+                /*final getsummaryrangesleepdata =
+                    await WithingsSleepGetSummaryDataManager(
+                            accessToken:
+                                'a1f1e1049fcfc9b613b4b6dbaa5f20a5b944a6ce')
+                        .fetch(WithingsSleepAPIURL.getSummaryRange(
+                  accessToken: 'a1f1e1049fcfc9b613b4b6dbaa5f20a5b944a6ce',
+                  dataFields: 'night_events',
+                  enddateymd: '2022-08-27',
+                  startdateymd: '2022-08-27',
+                )) as WithingsSleepGetSummaryData; //working */
+
+                /*final getsummarylastupdatesleepdata =
+                    await WithingsSleepGetSummaryDataManager(
+                            accessToken:
+                                '259d81023dd469c97899c9a8c97545ec48dde810')
+                        .fetch(WithingsSleepAPIURL.getSummaryLastupdate(
+                  accessToken: '259d81023dd469c97899c9a8c97545ec48dde8100',
+                  dataFields: 'hr',
+                  lastupdate: 1661908451,
+                )) as WithingsSleepGetSummaryData; //working */
+              },
+              child: Text('Sleep test'),
+            ),
           ],
         ),
       ),

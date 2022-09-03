@@ -12,21 +12,23 @@ class WithingsHeartListData implements WithingsData {
 
   WithingsHeartListData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'] != null ? BodyHeartList.fromJson(json['body']) : null;
+    body = json['body'].isNotEmpty ? BodyHeartList.fromJson(json['body']) : null;
   }
 
   @override
   Map<String, dynamic> toJson<T extends WithingsData>() {
-    return <String, dynamic>{
-      'status': status,
-      'body': body,
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (body != null) {
+      data['body'] = body!.toJson();
+    }
+    return data;
   }
 }
 
 class BodyHeartList {
   /// Array of objects
-  List<Series>? series;
+  List<SeriesHeartList>? series;
 
   /// To know if there is more data to fetch or not
   bool? more;
@@ -37,10 +39,10 @@ class BodyHeartList {
   BodyHeartList({this.series, this.more, this.offset});
 
   BodyHeartList.fromJson(Map<String, dynamic> json) {
-    if (json['series'] != null) {
-      series = <Series>[];
+    if (json['series'].isNotEmpty) {
+      series = <SeriesHeartList>[];
       json['series'].forEach((v) {
-        series!.add(Series.fromJson(v));
+        series!.add(SeriesHeartList.fromJson(v));
       });
     }
     more = json['more'];
@@ -58,14 +60,14 @@ class BodyHeartList {
   }
 }
 
-class Series {
+class SeriesHeartList {
   /// ID of device that tracked the data
   String? deviceid;
 
   /// The source of the recording
   int? model;
 
-  /// Object ecg
+  /// Object ECG
   Ecg? ecg;
 
   /// Object bloodpressure
@@ -80,7 +82,7 @@ class Series {
   /// Timezone for the date
   String? timezone;
 
-  Series(
+  SeriesHeartList(
       {this.deviceid,
       this.model,
       this.ecg,
@@ -89,11 +91,11 @@ class Series {
       this.timestamp,
       this.timezone});
 
-  Series.fromJson(Map<String, dynamic> json) {
+  SeriesHeartList.fromJson(Map<String, dynamic> json) {
     deviceid = json['deviceid'];
     model = json['model'];
-    ecg = json['ecg'] != null ? Ecg.fromJson(json['ecg']) : null;
-    bloodpressure = json['bloodpressure'] != null
+    ecg = json['ecg'].isNotEmpty ? Ecg.fromJson(json['ecg']) : null;
+    bloodpressure = json['bloodpressure'].isNotEmpty
         ? Bloodpressure.fromJson(json['bloodpressure'])
         : null;
     heartRate = json['heart_rate'];

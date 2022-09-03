@@ -4,15 +4,11 @@ import 'package:withings_flutter/src/urls/withingsAPIURL.dart';
 /// constructors to be used to generate Withings Web APIs urls to
 /// be used by [WithingsConnector].
 class WithingsAuthAPIURL extends WithingsAPIURL {
-  /// The data to be attached to the url.
-  Map<String, dynamic>? data;
 
   /// Default [WithingsAuthAPIURL] constructor.
   WithingsAuthAPIURL({String? url, Map<String, dynamic>? data}) {
     // super fields
     this.url = url;
-
-    // WithingsAuthAPIURL fields
     this.data = data;
   } // WithingsAuthAPIURL
 
