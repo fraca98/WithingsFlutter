@@ -32,3 +32,5 @@ class WithingsSleepGetSummaryDataManager extends WithingsDataManager {
     }
   } // _extractWithingsSleepGetSummaryData
 } // WithingsSleepGetSummaryDataManager
+
+// TODO: aggiungere metodo automatico per offset

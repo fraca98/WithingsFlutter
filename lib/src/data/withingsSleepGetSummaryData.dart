@@ -78,7 +78,7 @@ class SeriesSleepGetSummary {
   /// The timestamp of the last modification
   int? modified;
   /// Object Data (Details of sleep)
-  Data? data;
+  DataSleepGetSummary? data;
 
   SeriesSleepGetSummary(
       {this.timezone,
@@ -100,7 +100,7 @@ class SeriesSleepGetSummary {
     date = json['date'];
     created = json['created'];
     modified = json['modified'];
-    data = json['data'].isNotEmpty ? Data.fromJson(json['data']) : null;
+    data = json['data'].isNotEmpty ? DataSleepGetSummary.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -120,7 +120,7 @@ class SeriesSleepGetSummary {
   }
 }
 
-class Data {
+class DataSleepGetSummary {
   int? apneaHypopneaIndex;
   int? asleepduration;
   int? breathingDisturbancesIntensity;
@@ -150,7 +150,7 @@ class Data {
   int? wakeupduration;
   int? waso;
 
-  Data(
+  DataSleepGetSummary(
       {this.apneaHypopneaIndex,
       this.asleepduration,
       this.breathingDisturbancesIntensity,
@@ -180,7 +180,7 @@ class Data {
       this.wakeupduration,
       this.waso});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DataSleepGetSummary.fromJson(Map<String, dynamic> json) {
     apneaHypopneaIndex = json['apnea_hypopnea_index'];
     asleepduration = json['asleepduration'];
     breathingDisturbancesIntensity = json['breathing_disturbances_intensity'];

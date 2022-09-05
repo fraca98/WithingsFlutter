@@ -61,8 +61,6 @@ class SeriesSleepGet {
 
   /// Device model
   String? model;
-
-  ///
   int? modelId;
 
   /// Object (Heart rate)

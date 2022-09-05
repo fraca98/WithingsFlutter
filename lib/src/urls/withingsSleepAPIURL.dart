@@ -40,7 +40,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
   factory WithingsSleepAPIURL.getSummaryRange({
     required String startdateymd,
     required String enddateymd,
-    required String dataFields,
+    String? dataFields,
     required String accessToken,
   }) {
     return WithingsSleepAPIURL(
@@ -59,7 +59,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
   /// to retrieve [dataFields]
   factory WithingsSleepAPIURL.getSummaryLastupdate({
     required int lastupdate,
-    required String dataFields,
+    String? dataFields,
     required String accessToken,
   }) {
     return WithingsSleepAPIURL(
