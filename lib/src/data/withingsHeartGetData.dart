@@ -27,6 +27,15 @@ class WithingsHeartGetData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsHeartGetData(')
+          ..write('status: $status, ')
+          ..write('body: $body')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodyHeartGet {
@@ -54,6 +63,14 @@ class BodyHeartGet {
     data['wearposition'] = wearposition;
     return data;
   }
-}
 
-// TO DO: aggiungere toString()
+  @override
+  String toString() {
+    return (StringBuffer('BodyHeartGet(')
+          ..write('signal: $signal, ')
+          ..write('sampling_frequency: $samplingFrequency, ')
+          ..write('wearposition: $wearposition, ')
+          ..write(')'))
+        .toString();
+  }
+}

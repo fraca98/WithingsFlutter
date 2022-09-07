@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
                   signalId: 157847052,
                 )) as WithingsHeartGetData; //working*/
               },
-              child: Text('Test heart'),
+              child: Text('Heart Test'),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -88,7 +88,6 @@ class HomePage extends StatelessWidget {
                                 accessToken!)
                         .fetch(WithingsSleepAPIURL.getSummaryRange(
                   accessToken: accessToken!,
-                  //dataFields: 'night_events',
                   enddateymd: '2022-09-06',
                   startdateymd: '2022-09-06',
                   dataFields: 'hr_average,hr_max,night_events,remsleepduration'
@@ -104,7 +103,7 @@ class HomePage extends StatelessWidget {
                   lastupdate: 1662422035,
                 )) as WithingsSleepGetSummaryData; //Problem: data now is an array */
               },
-              child: Text('Sleep test'),
+              child: Text('Sleep Test'),
             ),
             ElevatedButton(
                 onPressed: () async {
@@ -171,7 +170,7 @@ class HomePage extends StatelessWidget {
                                   accessToken: accessToken!))
                           as WithingsMeasureGetworkoutsData; // working  */
                 },
-                child: Text('Test Measures'))
+                child: Text('Measures Test'))
           ],
         ),
       ),

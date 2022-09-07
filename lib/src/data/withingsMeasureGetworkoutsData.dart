@@ -27,6 +27,15 @@ class WithingsMeasureGetworkoutsData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsMeasureGetworkoutsData(')
+          ..write('status: $status, ')
+          ..write('body: $body, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodyMeasureGetworkouts {
@@ -60,6 +69,16 @@ class BodyMeasureGetworkouts {
     data['more'] = more;
     data['offset'] = offset;
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BodyMeasureGetworkouts(')
+          ..write('series: $series, ')
+          ..write('more: $more, ')
+          ..write('offset: $offset, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -136,6 +155,23 @@ class SeriesMeasureGetworkouts {
       data['data'] = this.data!.toJson();
     }
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesMeasureGetworkouts(')
+          ..write('category: $category, ')
+          ..write('timezone: $timezone, ')
+          ..write('model: $model, ')
+          ..write('attrib: $attrib, ')
+          ..write('startdate: $startdate, ')
+          ..write('enddate: $enddate, ')
+          ..write('date: $date, ')
+          ..write('modified: $modified, ')
+          ..write('deviceid: $deviceid, ')
+          ..write('data: $data, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -270,5 +306,31 @@ class DataMeasureGetworkouts {
     data['strokes'] = strokes;
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesMeasureGetworkouts(')
+          ..write('algo_pause_duration: $algoPauseDuration, ')
+          ..write('calories: $calories, ')
+          ..write('distance: $distance, ')
+          ..write('elevation: $elevation, ')
+          ..write('hr_average: $hrAverage, ')
+          ..write('hr_max: $hrMax, ')
+          ..write('hr_min: $hrMin, ')
+          ..write('hr_zone_0: $hrZone1, ')
+          ..write('hr_zone_1: $hrZone2, ')
+          ..write('hr_zone_2: $hrZone2, ')
+          ..write('hr_zone_3: $hrZone3, ')
+          ..write('intensity: $intensity, ')
+          ..write('manual_calories: $manualCalories, ')
+          ..write('manual_distance: $manualDistance, ')
+          ..write('pause_duration: $pauseDuration, ')
+          ..write('pool_laps: $poolLaps, ')
+          ..write('pool_length: $poolLength, ')
+          ..write('spo2_average: $spo2Average, ')
+          ..write('steps: $steps, ')
+          ..write('strokes: $strokes, ')
+          ..write(')'))
+        .toString();
+  }
 }
-//TODO: toString()

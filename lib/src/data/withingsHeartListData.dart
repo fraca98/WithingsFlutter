@@ -26,6 +26,15 @@ class WithingsHeartListData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsHeartListData(')
+          ..write('status: $status, ')
+          ..write('body: $body, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodyHeartList {
@@ -59,6 +68,16 @@ class BodyHeartList {
     data['more'] = more;
     data['offset'] = offset;
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BodyHeartList(')
+          ..write('series: $series, ')
+          ..write('more: $more, ')
+          ..write('offset: $offset, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -120,6 +139,20 @@ class SeriesHeartList {
     data['timezone'] = timezone;
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesHeartList(')
+          ..write('deviceid: $deviceid, ')
+          ..write('model: $model, ')
+          ..write('ecg: $ecg, ')
+          ..write('bloodpressure: $bloodpressure, ')
+          ..write('heart_rate: $heartRate, ')
+          ..write('timestamp: $timestamp, ')
+          ..write('timezone: $timezone, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class Ecg {
@@ -141,6 +174,15 @@ class Ecg {
     data['signalid'] = signalid;
     data['afib'] = afib;
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Ecg(')
+          ..write('signalid: $signalid, ')
+          ..write('afib: $afib, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -164,6 +206,13 @@ class Bloodpressure {
     data['systole'] = systole;
     return data;
   }
-}
 
-//TO DO: commentare e aggiungere toString()
+  @override
+  String toString() {
+    return (StringBuffer('Bloodpressure(')
+          ..write('diastole: $diastole, ')
+          ..write('systole: $systole, ')
+          ..write(')'))
+        .toString();
+  }
+}

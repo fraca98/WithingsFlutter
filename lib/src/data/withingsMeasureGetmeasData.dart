@@ -26,6 +26,15 @@ class WithingsMeasureGetmeasData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsMeasureGetmeasData(')
+          ..write('status: $status, ')
+          ..write('body: $body')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodyMeasureGetmeas {
@@ -74,6 +83,18 @@ class BodyMeasureGetmeas {
     data['more'] = more;
     data['offset'] = offset;
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BodyMeasureGetmeas(')
+          ..write('updatetime: $updatetime, ')
+          ..write('timezone: $timezone')
+          ..write('measuregrps: $measuregrps')
+          ..write('more: $more')
+          ..write('offset: $offset')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -153,6 +174,22 @@ class Measuregrps {
     data['timezone'] = timezone;
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('Measuregrps(')
+          ..write('grpid: $grpid, ')
+          ..write('attrib: $attrib')
+          ..write('date: $date')
+          ..write('created: $created')
+          ..write('modified: $modified')
+          ..write('category: $category')
+          ..write('deviceid: $deviceid')
+          ..write('measures: $measures')
+          ..write('timezone: $timezone')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class Measures {
@@ -199,5 +236,14 @@ class Measures {
     //data['fw'] = fw; // deprecated
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('Measuregrps(')
+          ..write('value: $value, ')
+          ..write('type: $type')
+          ..write('unit: $unit')
+          ..write(')'))
+        .toString();
+  }
 }
-// TODO: toString()

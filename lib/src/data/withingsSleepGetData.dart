@@ -27,6 +27,15 @@ class WithingsSleepGetData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsSleepGetData(')
+          ..write('status: $status, ')
+          ..write('body: $body, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodySleepGet {
@@ -50,6 +59,14 @@ class BodySleepGet {
       data['series'] = series!.map((v) => v.toJson()).toList();
     }
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BodySleepGet(')
+          ..write('series: $series, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -134,6 +151,23 @@ class SeriesSleepGet {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesSleepGet(')
+          ..write('startdate: $startdate, ')
+          ..write('enddate: $enddate, ')
+          ..write('state: $state, ')
+          ..write('model: $model, ')
+          ..write('model_id: $modelId, ')
+          ..write('hr: $hr, ')
+          ..write('rr: $rr, ')
+          ..write('snoring: $snoring, ')
+          ..write('sdnn_1: $sdnn1, ')
+          ..write('rmssd: $rmssd, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class ObjSleepGet {
@@ -151,6 +185,12 @@ class ObjSleepGet {
     data['$timestamp'] = timestamp;
     return data;
   }
-}
 
-// TODO: aggiungere toString()
+  @override
+  String toString() {
+    return (StringBuffer('ObjSleepGet(')
+          ..write('timestamp: $timestamp, ')
+          ..write(')'))
+        .toString();
+  }
+}

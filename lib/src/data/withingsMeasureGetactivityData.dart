@@ -26,6 +26,15 @@ class WithingsMeasureGetactivityData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsMeasureGetactivityData(')
+          ..write('status: $status, ')
+          ..write('body: $body, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodyMeasureGetactivity {
@@ -59,6 +68,16 @@ class BodyMeasureGetactivity {
     data['more'] = more;
     data['offset'] = offset;
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BodyMeasureGetactivity(')
+          ..write('activities: $activities, ')
+          ..write('more: $more, ')
+          ..write('offset: $offset, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -207,5 +226,33 @@ class Activities {
     data['hr_zone_3'] = hrZone3;
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('Activities(')
+          ..write('date: $date, ')
+          ..write('timezone: $timezone, ')
+          ..write('deviceid: $deviceid, ')
+          ..write('hash_deviceid: $hashDeviceid, ')
+          ..write('brand: $brand, ')
+          ..write('is_tracker: $isTracker, ')
+          ..write('steps: $steps, ')
+          ..write('distance: $distance, ')
+          ..write('elevation: $elevation, ')
+          ..write('soft: $soft, ')
+          ..write('moderate: $moderate, ')
+          ..write('intense: $intense, ')
+          ..write('active: $active, ')
+          ..write('calories: $calories, ')
+          ..write('totalcalories: $totalcalories, ')
+          ..write('hr_average: $hrAverage, ')
+          ..write('hr_min: $hrMin, ')
+          ..write('hr_max: $hrMax, ')
+          ..write('hr_zone_0: $hrZone0, ')
+          ..write('hr_zone_1: $hrZone1, ')
+          ..write('hr_zone_2: $hrZone2, ')
+          ..write('hr_zone_3: $hrZone3, ')
+          ..write(')'))
+        .toString();
+  }
 }
-// TODO: toString()

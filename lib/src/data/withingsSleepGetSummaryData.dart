@@ -30,6 +30,15 @@ class WithingsSleepGetSummaryData implements WithingsData {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsSleepGetSummaryData(')
+          ..write('status: $status, ')
+          ..write('body: $body, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
 class BodySleepGetSummary {
@@ -63,6 +72,16 @@ class BodySleepGetSummary {
     data['more'] = more;
     data['offset'] = offset;
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BodySleepGetSummary(')
+          ..write('series: $series, ')
+          ..write('more: $more, ')
+          ..write('offset: $offset, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -132,6 +151,22 @@ class SeriesSleepGetSummary {
       data['data'] = this.data!.toJson();
     }
     return data;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SeriesSleepGetSummary(')
+          ..write('timezone: $timezone, ')
+          ..write('model: $model, ')
+          ..write('model_id: $modelId, ')
+          ..write('startdate: $startdate, ')
+          ..write('enddate: $enddate, ')
+          ..write('date: $date, ')
+          ..write('created: $created, ')
+          ..write('modified: $modified, ')
+          ..write('data: $data, ')
+          ..write(')'))
+        .toString();
   }
 }
 
@@ -265,7 +300,36 @@ class DataSleepGetSummary {
     data['waso'] = waso;
     return data;
   }
+
+  @override
+  String toString() {
+    return (StringBuffer('DataSleepGetSummary(')
+          ..write('apnea_hypopnea_index: $apneaHypopneaIndex, ')
+          ..write('asleepduration: $asleepduration, ')
+          ..write(
+              'breathing_disturbances_intensity: $breathingDisturbancesIntensity, ')
+          ..write('deepsleepduration: $deepsleepduration, ')
+          ..write('nb_rem_episodes: $nbRemEpisodes, ')
+          ..write('out_of_bed_count: $outOfBedCount, ')
+          ..write('remsleepduration: $remsleepduration, ')
+          ..write('rr_average: $rrAverage, ')
+          ..write('rr_max: $rrMax, ')
+          ..write('rr_min: $rrMin, ')
+          ..write('sleep_efficiency: $sleepEfficiency, ')
+          ..write('sleep_latency: $sleepLatency, ')
+          ..write('sleep_score: $sleepScore, ')
+          ..write('snoring: $snoring, ')
+          ..write('snoringepisodecount: $snoringepisodecount, ')
+          ..write('total_sleep_time: $totalSleepTime, ')
+          ..write('total_timeinbed: $totalTimeinbed, ')
+          ..write('wakeup_latency: $wakeupLatency, ')
+          ..write('wakeupcount: $wakeupcount, ')
+          ..write('wakeupduration: $wakeupduration, ')
+          ..write('waso: $waso, ')
+          ..write(')'))
+        .toString();
+  }
 }
 
-// TODO: nightEvents, aggiungere commenti, toString()
+// TODO: nightEvents
 // nightEvents? di che tipo è l'array?
