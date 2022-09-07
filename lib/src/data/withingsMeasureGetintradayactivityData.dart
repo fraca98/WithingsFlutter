@@ -13,7 +13,7 @@ class WithingsMeasureGetintradayactivityData implements WithingsData {
 
   WithingsMeasureGetintradayactivityData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'].isNotEmpty
+    body = json['body'] != null
         ? BodyMeasureGetintradayactivity.fromJson(json['body'])
         : null;
   }

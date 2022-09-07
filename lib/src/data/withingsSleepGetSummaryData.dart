@@ -1,20 +1,24 @@
 import 'package:withings_flutter/src/data/withingsData.dart';
 
-/// [WithingsSleepGetSummaryData] is a class that returns sleep activity summaries, 
+/// [WithingsSleepGetSummaryData] is a class that returns sleep activity summaries,
 /// which are an aggregation of all the data captured at high frequency during the sleep activity
-class WithingsSleepGetSummaryData implements WithingsData{
-
+class WithingsSleepGetSummaryData implements WithingsData {
   /// Response status
   int? status;
+
   /// Response data
   BodySleepGetSummary? body;
 
   /// Default [WithingsSleepGetSummaryData] constructor
   WithingsSleepGetSummaryData({this.status, this.body});
 
-  WithingsSleepGetSummaryData.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body = json['body'].isNotEmpty ? BodySleepGetSummary.fromJson(json['body']) : null;
+  factory WithingsSleepGetSummaryData.fromJson(Map<String, dynamic> json) {
+    return WithingsSleepGetSummaryData(
+      status: json['status'],
+      body: json['body'] != null
+          ? BodySleepGetSummary.fromJson(json['body'])
+          : null,
+    );
   }
 
   @override
@@ -31,8 +35,10 @@ class WithingsSleepGetSummaryData implements WithingsData{
 class BodySleepGetSummary {
   /// Array of SeriesSleepGetSummary objects
   List<SeriesSleepGetSummary>? series;
+
   /// To know if there is more data to fetch or not
   bool? more;
+
   /// Offset to use to retrieve the next data
   int? offset;
 
@@ -63,20 +69,27 @@ class BodySleepGetSummary {
 class SeriesSleepGetSummary {
   /// Timezone for the date
   String? timezone;
+
   /// The source for sleep data. Value can be 16 for a tracker or 32 for a Sleep Monitor
   int? model;
   int? modelId;
+
   /// The starting datetime for the sleep state data
   int? startdate;
+
   /// The end datetime for the sleep data. A single call can span up to 7 days maximum.
   /// To cover a wider time range, you will need to perform multiple calls
   int? enddate;
+
   /// Date at which the measure was taken or entered
   String? date;
+
   /// The timestamp of the creation
   int? created;
+
   /// The timestamp of the last modification
   int? modified;
+
   /// Object Data (Details of sleep)
   DataSleepGetSummary? data;
 
@@ -100,7 +113,9 @@ class SeriesSleepGetSummary {
     date = json['date'];
     created = json['created'];
     modified = json['modified'];
-    data = json['data'].isNotEmpty ? DataSleepGetSummary.fromJson(json['data']) : null;
+    data = json['data'] != null
+        ? DataSleepGetSummary.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -220,8 +235,7 @@ class DataSleepGetSummary {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['apnea_hypopnea_index'] = apneaHypopneaIndex;
     data['asleepduration'] = asleepduration;
-    data['breathing_disturbances_intensity'] =
-        breathingDisturbancesIntensity;
+    data['breathing_disturbances_intensity'] = breathingDisturbancesIntensity;
     data['deepsleepduration'] = deepsleepduration;
     //data['durationtosleep'] = durationtosleep; //deprecated
     //data['durationtowakeup'] = durationtowakeup; //deprecated

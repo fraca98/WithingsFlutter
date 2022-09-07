@@ -13,9 +13,8 @@ class WithingsMeasureGetmeasData implements WithingsData {
 
   WithingsMeasureGetmeasData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'].isNotEmpty
-        ? BodyMeasureGetmeas.fromJson(json['body'])
-        : null;
+    body =
+        json['body'] != null ? BodyMeasureGetmeas.fromJson(json['body']) : null;
   }
 
   @override
@@ -31,7 +30,7 @@ class WithingsMeasureGetmeasData implements WithingsData {
 
 class BodyMeasureGetmeas {
   /// Server time at which the answer was generated
-  String? updatetime;
+  int? updatetime;
 
   /// Timezone for the date
   String? timezone;
@@ -104,7 +103,7 @@ class Measuregrps {
   List<Measures>? measures;
 
   //String? comment; //deprecated
-  
+
   /// Timezone for the date
   String? timezone;
 

@@ -12,7 +12,7 @@ class WithingsMeasureGetactivityData implements WithingsData {
 
   WithingsMeasureGetactivityData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'].isNotEmpty
+    body = json['body'] != null
         ? BodyMeasureGetactivity.fromJson(json['body'])
         : null;
   }
@@ -41,7 +41,7 @@ class BodyMeasureGetactivity {
   BodyMeasureGetactivity({this.activities, this.more, this.offset});
 
   BodyMeasureGetactivity.fromJson(Map<String, dynamic> json) {
-    if (json['activities'].isNotEmptys) {
+    if (json['activities'].isNotEmpty) {
       activities = <Activities>[];
       json['activities'].forEach((v) {
         activities!.add(Activities.fromJson(v));
@@ -87,10 +87,10 @@ class Activities {
   int? steps;
 
   /// Distance travelled (in meters). (Use 'dataFields' to request this data)
-  int? distance;
+  num? distance;
 
   /// Number of floors climbed. (Use 'dataFields' to request this data)
-  int? elevation;
+  num? elevation;
 
   /// Duration of soft activities (in seconds). (Use 'dataFields' to request this data)
   int? soft;
@@ -106,10 +106,10 @@ class Activities {
 
   /// Active calories burned (in Kcal). Calculated by mixing fine granularity calories estimation,
   /// workouts estimated calories and calories manually set by the user. (Use 'dataFields' to request this data)
-  int? calories;
+  num? calories;
 
   /// Total calories burned (in Kcal). Obtained by adding active calories and passive calories
-  int? totalcalories;
+  num? totalcalories;
 
   /// Average heart rate. (Use 'dataFields' to request this data)
   int? hrAverage;

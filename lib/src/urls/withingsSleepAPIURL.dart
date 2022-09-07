@@ -19,7 +19,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
   factory WithingsSleepAPIURL.get({
     required int startdate,
     required int enddate,
-    String? dataFields,
+    required String dataFields,
     required String accessToken,
   }) {
     return WithingsSleepAPIURL(

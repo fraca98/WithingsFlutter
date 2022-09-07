@@ -10,9 +10,11 @@ class WithingsHeartListData implements WithingsData {
 
   WithingsHeartListData({this.status, this.body});
 
-  WithingsHeartListData.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body = json['body'].isNotEmpty ? BodyHeartList.fromJson(json['body']) : null;
+  factory WithingsHeartListData.fromJson(Map<String, dynamic> json) {
+    return WithingsHeartListData(
+      status: json['status'],
+      body: json['body'] != null ? BodyHeartList.fromJson(json['body']) : null,
+    );
   }
 
   @override
@@ -94,8 +96,8 @@ class SeriesHeartList {
   SeriesHeartList.fromJson(Map<String, dynamic> json) {
     deviceid = json['deviceid'];
     model = json['model'];
-    ecg = json['ecg'].isNotEmpty ? Ecg.fromJson(json['ecg']) : null;
-    bloodpressure = json['bloodpressure'].isNotEmpty
+    ecg = json['ecg'] != null ? Ecg.fromJson(json['ecg']) : null;
+    bloodpressure = json['bloodpressure'] != null
         ? Bloodpressure.fromJson(json['bloodpressure'])
         : null;
     heartRate = json['heart_rate'];

@@ -22,12 +22,12 @@ class WithingsHeartGetDataManager extends WithingsDataManager {
     return ret;
   } // fetch
 
-  /// A private method that extracts [WithingsSleepGetData] from the given response.
-  WithingsSleepGetData _extractWithingsHeartGetData(dynamic response) {
+  /// A private method that extracts [WithingsHeartGetData] from the given response.
+  WithingsHeartGetData _extractWithingsHeartGetData(dynamic response) {
     if (response['status'] == 0) {
-      return WithingsSleepGetData.fromJson(response);
+      return WithingsHeartGetData.fromJson(response);
     } else {
-      return WithingsSleepGetData();
+      return WithingsHeartGetData();
     }
   } // _extractWithingsHeartGetData
 }

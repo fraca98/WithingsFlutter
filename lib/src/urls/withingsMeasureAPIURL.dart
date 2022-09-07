@@ -18,15 +18,15 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
   /// to retrieve [meastypes]. The offset [offset] is used if we have more data to retrieve, category [category]
   /// is used to request for real measures or user objectives
   factory WithingsMeasureAPIURL.getMeasRange({
-    List<int>? meastypes,
+    String? meastypes,
     int? category,
-    int? startdate,
-    int? enddate,
+    required int startdate,
+    required int enddate,
     int? offset,
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getmeas',
         'meastypes': meastypes,
@@ -44,14 +44,14 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
   /// to retrieve [meastypes]. The offset [offset] is used if we have more data to retrieve, category [category]
   /// is used to request for real measures or user objectives
   factory WithingsMeasureAPIURL.getMeasLastupdate({
-    List<int>? meastypes,
+    String? meastypes,
     int? category,
-    int? lastupdate,
+    required int lastupdate,
     int? offset,
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getmeas',
         'meastypes': meastypes,
@@ -74,7 +74,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getactivity',
         'startdateymd': startdateymd,
@@ -96,7 +96,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getactivity',
         'lastupdate': lastupdate,
@@ -117,7 +117,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getintradayactivity',
         'startdate': startdate,
@@ -139,7 +139,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getworkouts',
         'startdateymd': startdateymd,
@@ -161,7 +161,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
-      url: 'https://wbsapi.withings.net/measure',
+      url: 'https://wbsapi.withings.net/v2/measure',
       data: {
         'action': 'getworkouts',
         'lastupdate': lastupdate,

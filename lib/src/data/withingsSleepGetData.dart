@@ -11,9 +11,11 @@ class WithingsSleepGetData implements WithingsData {
   /// Default [WithingsSleepGetData] constructor
   WithingsSleepGetData({this.status, this.body});
 
-  WithingsSleepGetData.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body = json['body'].isNotEmpty ? BodySleepGet.fromJson(json['body']) : null;
+  factory WithingsSleepGetData.fromJson(Map<String, dynamic> json) {
+    return WithingsSleepGetData(
+      status: json['status'],
+      body: json['body'] != null ? BodySleepGet.fromJson(json['body']) : null,
+    );
   }
 
   @override
@@ -29,20 +31,23 @@ class WithingsSleepGetData implements WithingsData {
 
 class BodySleepGet {
   /// Object SeriesSleepGet
-  SeriesSleepGet? series;
+  List<SeriesSleepGet>? series;
 
   BodySleepGet({this.series});
 
   BodySleepGet.fromJson(Map<String, dynamic> json) {
-    series = json['series'].isNotEmpty
-        ? SeriesSleepGet.fromJson(json['series'])
-        : null;
+    if (json['series'].isNotEmpty) {
+      series = <SeriesSleepGet>[];
+      json['series'].forEach((v) {
+        series!.add(SeriesSleepGet.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (series != null) {
-      data['series'] = series!.toJson();
+      data['series'] = series!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -96,15 +101,13 @@ class SeriesSleepGet {
     state = json['state'];
     model = json['model'];
     modelId = json['model_id'];
-    hr = json['hr'].isNotEmpty ? ObjSleepGet.fromJson(json['hr']) : null;
-    rr = json['rr'].isNotEmpty ? ObjSleepGet.fromJson(json['rr']) : null;
-    snoring = json['snoring'].isNotEmpty
-        ? ObjSleepGet.fromJson(json['snoring'])
-        : null;
+    hr = json['hr'] != null ? ObjSleepGet.fromJson(json['hr']) : null;
+    rr = json['rr'] != null ? ObjSleepGet.fromJson(json['rr']) : null;
+    snoring =
+        json['snoring'] != null ? ObjSleepGet.fromJson(json['snoring']) : null;
     sdnn1 =
-        json['sdnn_1'].isNotEmpty ? ObjSleepGet.fromJson(json['sdnn_1']) : null;
-    rmssd =
-        json['rmssd'].isNotEmpty ? ObjSleepGet.fromJson(json['rmssd']) : null;
+        json['sdnn_1'] != null ? ObjSleepGet.fromJson(json['sdnn_1']) : null;
+    rmssd = json['rmssd'] != null ? ObjSleepGet.fromJson(json['rmssd']) : null;
   }
 
   Map<String, dynamic> toJson() {

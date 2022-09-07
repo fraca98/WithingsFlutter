@@ -1,7 +1,7 @@
 import 'package:logger/logger.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 
-/// [WithingsMeasureGetintradayactivityDataManager] is a class the manages the requests related to [WithingsMeasureGetaintradayactivityData]
+/// [WithingsMeasureGetintradayactivityDataManager] is a class the manages the requests related to [WithingsMeasureGetintradayactivityData]
 class WithingsMeasureGetintradayactivityDataManager
     extends WithingsDataManager {
   WithingsMeasureGetintradayactivityDataManager({required String accessToken})
@@ -24,7 +24,7 @@ class WithingsMeasureGetintradayactivityDataManager
     return ret;
   } // fetch
 
-  /// A private method that extracts [WithingsMeasureGetactivityData] from the given response.
+  /// A private method that extracts [WithingsMeasureGetintradayactivityData] from the given response.
   WithingsMeasureGetintradayactivityData
       _extractWithingsMeasureGetaintradayactivityData(dynamic response) {
     if (response['status'] == 0) {

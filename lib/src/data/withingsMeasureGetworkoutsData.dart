@@ -13,7 +13,7 @@ class WithingsMeasureGetworkoutsData implements WithingsData {
 
   WithingsMeasureGetworkoutsData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    body = json['body'].isNotEmpty
+    body = json['body'] != null
         ? BodyMeasureGetworkouts.fromJson(json['body'])
         : null;
   }
@@ -116,7 +116,7 @@ class SeriesMeasureGetworkouts {
     date = json['date'];
     modified = json['modified'];
     deviceid = json['deviceid'];
-    data = json['data'].isNotEmpty
+    data = json['data'] != null
         ? DataMeasureGetworkouts.fromJson(json['data'])
         : null;
   }

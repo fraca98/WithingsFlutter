@@ -11,9 +11,11 @@ class WithingsHeartGetData implements WithingsData {
   /// Default [WithingsHeartGetData] constructor
   WithingsHeartGetData({this.status, this.body});
 
-  WithingsHeartGetData.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body = json['body'].isNotEmpty ? BodyHeartGet.fromJson(json['body']) : null;
+  factory WithingsHeartGetData.fromJson(Map<String, dynamic> json) {
+    return WithingsHeartGetData(
+      status: json['status'],
+      body: json['body'] != null ? BodyHeartGet.fromJson(json['body']) : null,
+    );
   }
 
   @override
