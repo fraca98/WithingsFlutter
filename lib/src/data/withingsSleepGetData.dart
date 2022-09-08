@@ -92,7 +92,7 @@ class SeriesTimestampSleepGet {
   SeriesTimestampSleepGet.fromJson(Map<String, dynamic> json) {
     seriesTimestampSleepGet = <ObjSleepGet>[];
     json.forEach((key, value) {
-      seriesTimestampSleepGet?.add(ObjSleepGet(timestamp: key, value: value));
+      seriesTimestampSleepGet?.add(ObjSleepGet(timestamp: int.parse(key), value: value));
     });
   }
 
@@ -107,7 +107,7 @@ class SeriesTimestampSleepGet {
 
 class ObjSleepGet {
   /// Timestamp
-  String? timestamp;
+  int? timestamp;
 
   /// Value associated to the timestamp
   int? value;

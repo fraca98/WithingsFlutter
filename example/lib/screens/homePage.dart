@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   static const route = '/';
   static const routename = 'HomePage';
 
-  String? accessToken = '25b48c8a4562eb8219feb48abd23aacc633de412';
+  String? accessToken = '6fafd25e5710bc4337e6599f6ff69991527a6fe3';
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,7 @@ class HomePage extends StatelessWidget {
                                       enddateymd: '2022-09-05',
                                       //dataFields: 'hr_average,hr_zone_0',
                                       accessToken: accessToken!))
-                              as WithingsMeasureGetactivityData; // Check
+                              as WithingsMeasureGetactivityData; // Working
                       print(getactivityrange);
                     },
                     child: Text('GetRange activity')),
@@ -195,7 +195,7 @@ class HomePage extends StatelessWidget {
                         lastupdate: 1662335635,
                         //dataFields: 'hr_average,hr_zone_0',
                         accessToken: accessToken!,
-                      )) as WithingsMeasureGetactivityData; // Check
+                      )) as WithingsMeasureGetactivityData; // Working
                       print(getactivityupate);
                     },
                     child: Text('GetUpdate activity')),
@@ -203,27 +203,51 @@ class HomePage extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () async {
-                  /*final getintradayactivity =
+                  final getintradayactivity =
                       await WithingsMeasureGetintradayactivityDataManager(
                               accessToken: accessToken!)
                           .fetch(WithingsMeasureAPIURL.getIntradayactivity(
-                            startdate: 1662584112,
-                            enddate: 1662630912,
-                            dataFields: 'spo2_auto',
+                    startdate: 1662584112,
+                    enddate: 1662630912,
+                    dataFields: 'spo2_auto',
                     accessToken: accessToken!,
-                  )) as WithingsMeasureGetintradayactivityData;
-                  print(getintradayactivity.body?.series?.timestamp?.distance); // WIP */
-
-                  /*final getactivityupdate =
-                      await WithingsMeasureGetworkoutsDataManager(
-                                  accessToken: accessToken!)
-                              .fetch(WithingsMeasureAPIURL.getWorkoutsLastupdate(
-                                  lastupdate: 1662389635,
-                                  dataFields: 'hr_average,hr_zone_0',
-                                  accessToken: accessToken!))
-                          as WithingsMeasureGetworkoutsData; // working  */
+                  )) as WithingsMeasureGetintradayactivityData; //Working
                 },
-                child: Text('Measures Test'))
+                child: Text('getIntradayActivity')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () async {
+                      final getworkoutrange =
+                          await WithingsMeasureGetworkoutsDataManager(
+                                      accessToken: accessToken!)
+                                  .fetch(WithingsMeasureAPIURL.getWorkoutsRange(
+                                      startdateymd: '2022-09-05',
+                                      enddateymd: '2022-09-05',
+                                      accessToken: accessToken!))
+                              as WithingsMeasureGetworkoutsData; // Check
+                      print(getworkoutrange);
+                    },
+                    child: Text('getWorkoutRange')),
+                SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final getworkoutupdate =
+                          await WithingsMeasureGetworkoutsDataManager(
+                                      accessToken: accessToken!)
+                                  .fetch(WithingsMeasureAPIURL
+                                      .getWorkoutsLastupdate(
+                                          lastupdate: 1662335635,
+                                          accessToken: accessToken!))
+                              as WithingsMeasureGetworkoutsData; // Check
+                      print(getworkoutupdate);
+                    },
+                    child: Text('getWorkoutUpdate')),
+              ],
+            )
           ],
         ),
       ),
