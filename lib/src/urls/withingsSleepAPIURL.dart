@@ -15,7 +15,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
 
   /// Generates a [WithingsSleepAPIURL] to get [WithingsSleepGetData] of a specific date range
   /// between [startdate] and [enddate] of a given user [accessToken], defining the data fields we want
-  /// to retrieve [dataFields]
+  /// to retrieve [dataFields]. If your input startdate and enddate are separated by more than 24h, only the first 24h after startdate will be returned
   factory WithingsSleepAPIURL.get({
     required int startdate,
     required int enddate,

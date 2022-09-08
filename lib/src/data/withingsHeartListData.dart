@@ -2,42 +2,6 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsHeartListData] is a class that returns a list of ECG records and Afib classification for a given period of time
 class WithingsHeartListData implements WithingsData {
-  /// Response status
-  int? status;
-
-  /// Response data
-  BodyHeartList? body;
-
-  WithingsHeartListData({this.status, this.body});
-
-  factory WithingsHeartListData.fromJson(Map<String, dynamic> json) {
-    return WithingsHeartListData(
-      status: json['status'],
-      body: json['body'] != null ? BodyHeartList.fromJson(json['body']) : null,
-    );
-  }
-
-  @override
-  Map<String, dynamic> toJson<T extends WithingsData>() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (body != null) {
-      data['body'] = body!.toJson();
-    }
-    return data;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('WithingsHeartListData(')
-          ..write('status: $status, ')
-          ..write('body: $body, ')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class BodyHeartList {
   /// Array of objects
   List<SeriesHeartList>? series;
 
@@ -47,32 +11,27 @@ class BodyHeartList {
   /// Offset to use to retrieve the next data
   int? offset;
 
-  BodyHeartList({this.series, this.more, this.offset});
+  /// Default [WithingsHeartListData] constructor
+  WithingsHeartListData({this.series, this.more, this.offset});
 
-  BodyHeartList.fromJson(Map<String, dynamic> json) {
-    if (json['series'].isNotEmpty) {
-      series = <SeriesHeartList>[];
-      json['series'].forEach((v) {
-        series!.add(SeriesHeartList.fromJson(v));
-      });
+  WithingsHeartListData.fromJson(Map<String, dynamic> json) {
+    if (json['status'] == 0 && json['body'] != null) {
+      if (json['body']['series'].isNotEmpty) {
+        series = <SeriesHeartList>[];
+        json['body']['series'].forEach((v) {
+          if (v['ecg'] != null) {
+            series?.add(SeriesHeartList.fromJson(v));
+          }
+        });
+      }
+      more = json['body']['more'];
+      offset = json['body']['offset'];
     }
-    more = json['more'];
-    offset = json['offset'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (series != null) {
-      data['series'] = series!.map((v) => v.toJson()).toList();
-    }
-    data['more'] = more;
-    data['offset'] = offset;
-    return data;
   }
 
   @override
   String toString() {
-    return (StringBuffer('BodyHeartList(')
+    return (StringBuffer('WithingsHeartListData(')
           ..write('series: $series, ')
           ..write('more: $more, ')
           ..write('offset: $offset, ')
@@ -82,11 +41,8 @@ class BodyHeartList {
 }
 
 class SeriesHeartList {
-  /// ID of device that tracked the data
-  String? deviceid;
-
-  /// The source of the recording
-  int? model;
+  /// Timestamp of the recording
+  int? timestamp;
 
   /// Object ECG
   Ecg? ecg;
@@ -95,61 +51,31 @@ class SeriesHeartList {
   Bloodpressure? bloodpressure;
 
   /// Average recorded heart rate
-  int? heartRate;
+  int? avgHeartRate;
 
-  /// Timestamp of the recording
-  int? timestamp;
-
-  /// Timezone for the date
-  String? timezone;
-
-  SeriesHeartList(
-      {this.deviceid,
-      this.model,
-      this.ecg,
-      this.bloodpressure,
-      this.heartRate,
-      this.timestamp,
-      this.timezone});
+  SeriesHeartList({
+    this.ecg,
+    this.bloodpressure,
+    this.avgHeartRate,
+    this.timestamp,
+  });
 
   SeriesHeartList.fromJson(Map<String, dynamic> json) {
-    deviceid = json['deviceid'];
-    model = json['model'];
-    ecg = json['ecg'] != null ? Ecg.fromJson(json['ecg']) : null;
+    timestamp = json['timestamp'];
+    ecg = Ecg.fromJson(json['ecg']);
     bloodpressure = json['bloodpressure'] != null
         ? Bloodpressure.fromJson(json['bloodpressure'])
         : null;
-    heartRate = json['heart_rate'];
-    timestamp = json['timestamp'];
-    timezone = json['timezone'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['deviceid'] = deviceid;
-    data['model'] = model;
-    if (ecg != null) {
-      data['ecg'] = ecg!.toJson();
-    }
-    if (bloodpressure != null) {
-      data['bloodpressure'] = bloodpressure!.toJson();
-    }
-    data['heart_rate'] = heartRate;
-    data['timestamp'] = timestamp;
-    data['timezone'] = timezone;
-    return data;
+    avgHeartRate = json['heart_rate'];
   }
 
   @override
   String toString() {
     return (StringBuffer('SeriesHeartList(')
-          ..write('deviceid: $deviceid, ')
-          ..write('model: $model, ')
+          ..write('timestamp: $timestamp, ')
           ..write('ecg: $ecg, ')
           ..write('bloodpressure: $bloodpressure, ')
-          ..write('heart_rate: $heartRate, ')
-          ..write('timestamp: $timestamp, ')
-          ..write('timezone: $timezone, ')
+          ..write('avgHeartRate: $avgHeartRate, ')
           ..write(')'))
         .toString();
   }
@@ -167,13 +93,6 @@ class Ecg {
   Ecg.fromJson(Map<String, dynamic> json) {
     signalid = json['signalid'];
     afib = json['afib'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['signalid'] = signalid;
-    data['afib'] = afib;
-    return data;
   }
 
   @override
@@ -198,13 +117,6 @@ class Bloodpressure {
   Bloodpressure.fromJson(Map<String, dynamic> json) {
     diastole = json['diastole'];
     systole = json['systole'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['diastole'] = diastole;
-    data['systole'] = systole;
-    return data;
   }
 
   @override

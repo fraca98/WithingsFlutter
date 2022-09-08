@@ -2,43 +2,7 @@ import 'package:withings_flutter/src/data/withingsData.dart';
 
 /// [WithingsMeasureGetactivityData] is a class that provides daily aggregated activity data of a user
 class WithingsMeasureGetactivityData implements WithingsData {
-  /// Response status
-  int? status;
-
-  /// Response body
-  BodyMeasureGetactivity? body;
-
-  WithingsMeasureGetactivityData({this.status, this.body});
-
-  WithingsMeasureGetactivityData.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body = json['body'] != null
-        ? BodyMeasureGetactivity.fromJson(json['body'])
-        : null;
-  }
-
-  @override
-  Map<String, dynamic> toJson<T extends WithingsData>() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (body != null) {
-      data['body'] = body!.toJson();
-    }
-    return data;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('WithingsMeasureGetactivityData(')
-          ..write('status: $status, ')
-          ..write('body: $body, ')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class BodyMeasureGetactivity {
-  /// Array of objects
+  /// Array of objects (Activities)
   List<Activities>? activities;
 
   /// To know if there is more data to fetch or not
@@ -47,32 +11,24 @@ class BodyMeasureGetactivity {
   /// Offset to use to retrieve the next data
   int? offset;
 
-  BodyMeasureGetactivity({this.activities, this.more, this.offset});
+  WithingsMeasureGetactivityData({this.activities, this.more, this.offset});
 
-  BodyMeasureGetactivity.fromJson(Map<String, dynamic> json) {
-    if (json['activities'].isNotEmpty) {
-      activities = <Activities>[];
-      json['activities'].forEach((v) {
-        activities!.add(Activities.fromJson(v));
-      });
+  WithingsMeasureGetactivityData.fromJson(Map<String, dynamic> json) {
+    if (json['status'] == 0 && json['body'] != null) {
+      if (json['body']['activities'].isNotEmpty) {
+        activities = <Activities>[];
+        json['body']['activities'].forEach((v) {
+          activities?.add(Activities.fromJson(v));
+        });
+      }
+      more = json['body']['more'];
+      offset = json['body']['offset'];
     }
-    more = json['more'];
-    offset = json['offset'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (activities != null) {
-      data['activities'] = activities!.map((v) => v.toJson()).toList();
-    }
-    data['more'] = more;
-    data['offset'] = offset;
-    return data;
   }
 
   @override
   String toString() {
-    return (StringBuffer('BodyMeasureGetactivity(')
+    return (StringBuffer('WithingsMeasureGetactivityData(')
           ..write('activities: $activities, ')
           ..write('more: $more, ')
           ..write('offset: $offset, ')
@@ -84,23 +40,6 @@ class BodyMeasureGetactivity {
 class Activities {
   /// Date of the aggregated data
   String? date;
-
-  /// Timezone for the date
-  String? timezone;
-
-  /// ID of device that tracked the data
-  String? deviceid;
-
-  /// ID of device that tracked the data
-  String? hashDeviceid;
-
-  /// Specifies if data comes from Withings (device or mobile application tracker)
-  /// or an external way (Value is 1 for Withings and 18 for external)
-  int? brand;
-
-  /// Is true if data was tracked by a Withings tracker (such as Pulse, Go and Watches)
-  /// otherwise data was tracked by a mobile application or an external way
-  bool? isTracker;
 
   /// Number of steps. (Use 'dataFields' to request this data)
   int? steps;
@@ -153,11 +92,6 @@ class Activities {
 
   Activities(
       {this.date,
-      this.timezone,
-      this.deviceid,
-      this.hashDeviceid,
-      this.brand,
-      this.isTracker,
       this.steps,
       this.distance,
       this.elevation,
@@ -177,11 +111,6 @@ class Activities {
 
   Activities.fromJson(Map<String, dynamic> json) {
     date = json['date'];
-    timezone = json['timezone'];
-    deviceid = json['deviceid'];
-    hashDeviceid = json['hash_deviceid'];
-    brand = json['brand'];
-    isTracker = json['is_tracker'];
     steps = json['steps'];
     distance = json['distance'];
     elevation = json['elevation'];
@@ -200,42 +129,10 @@ class Activities {
     hrZone3 = json['hr_zone_3'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['date'] = date;
-    data['timezone'] = timezone;
-    data['deviceid'] = deviceid;
-    data['hash_deviceid'] = hashDeviceid;
-    data['brand'] = brand;
-    data['is_tracker'] = isTracker;
-    data['steps'] = steps;
-    data['distance'] = distance;
-    data['elevation'] = elevation;
-    data['soft'] = soft;
-    data['moderate'] = moderate;
-    data['intense'] = intense;
-    data['active'] = active;
-    data['calories'] = calories;
-    data['totalcalories'] = totalcalories;
-    data['hr_average'] = hrAverage;
-    data['hr_min'] = hrMin;
-    data['hr_max'] = hrMax;
-    data['hr_zone_0'] = hrZone0;
-    data['hr_zone_1'] = hrZone1;
-    data['hr_zone_2'] = hrZone2;
-    data['hr_zone_3'] = hrZone3;
-    return data;
-  }
-
   @override
   String toString() {
     return (StringBuffer('Activities(')
           ..write('date: $date, ')
-          ..write('timezone: $timezone, ')
-          ..write('deviceid: $deviceid, ')
-          ..write('hash_deviceid: $hashDeviceid, ')
-          ..write('brand: $brand, ')
-          ..write('is_tracker: $isTracker, ')
           ..write('steps: $steps, ')
           ..write('distance: $distance, ')
           ..write('elevation: $elevation, ')

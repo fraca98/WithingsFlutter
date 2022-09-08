@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   static const route = '/';
   static const routename = 'HomePage';
 
-  String? accessToken = '34348468631ab3e51079ab806b60a2b59ede49ef';
+  String? accessToken = '25b48c8a4562eb8219feb48abd23aacc633de412';
 
   @override
   Widget build(BuildContext context) {
@@ -49,118 +49,171 @@ class HomePage extends StatelessWidget {
               },
               child: Text('Refresh token'),
             ),
-            ElevatedButton(
-              onPressed: () async {
-                /*final listheartdata =
-                    await WithingsHeartListDataManager(
-                                accessToken:
-                                    accessToken!)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    final listheartdata = await WithingsHeartListDataManager(
+                                accessToken: accessToken!)
                             .fetch(WithingsHeartAPIURL.list(
                                 startdate: 1661873383,
                                 enddate: 1661884183,
-                                accessToken:
-                                    accessToken!))
-                        as WithingsHeartListData; //working */
-
-                /*final getheartdata = await WithingsHeartGetDataManager(
-                        accessToken: accessToken!)
-                    .fetch(WithingsHeartAPIURL.get(
-                  accessToken: accessToken!,
-                  signalId: 157847052,
-                )) as WithingsHeartGetData; //working*/
-              },
-              child: Text('Heart Test'),
+                                accessToken: accessToken!))
+                        as WithingsHeartListData; //Working */
+                  },
+                  child: Text('List Heart'),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final getheartdata = await WithingsHeartGetDataManager(
+                            accessToken: accessToken!)
+                        .fetch(WithingsHeartAPIURL.get(
+                      accessToken: accessToken!,
+                      signalId: 157847052,
+                    )) as WithingsHeartGetData; //Working */
+                  },
+                  child: Text('Get Heart'),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () async {
-                /*final getsleepdata =
-                    await WithingsSleepGetDataManager(accessToken: accessToken!)
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    final getsleepdata = await WithingsSleepGetDataManager(
+                            accessToken: accessToken!)
                         .fetch(WithingsSleepAPIURL.get(
-                  accessToken: accessToken!,
-                  startdate: 1662425635,
-                  enddate: 1662458035,
-                  dataFields: 'hr,rr,snoring',
-                )) as WithingsSleepGetData; // */
-
-                /*final getsummaryrangesleepdata =
-                    await WithingsSleepGetSummaryDataManager(
-                            accessToken:
-                                accessToken!)
-                        .fetch(WithingsSleepAPIURL.getSummaryRange(
-                  accessToken: accessToken!,
-                  enddateymd: '2022-09-06',
-                  startdateymd: '2022-09-06',
-                  dataFields: 'hr_average,hr_max,night_events,remsleepduration'
-                )) as WithingsSleepGetSummaryData; //working */
-
-                /*final getsummarylastupdatesleepdata =
-                    await WithingsSleepGetSummaryDataManager(
-                            accessToken:
-                                accessToken!)
-                        .fetch(WithingsSleepAPIURL.getSummaryLastupdate(
-                  accessToken: accessToken!,
-                  dataFields: 'hr',
-                  lastupdate: 1662422035,
-                )) as WithingsSleepGetSummaryData; //Problem: data now is an array */
-              },
-              child: Text('Sleep Test'),
+                      accessToken: accessToken!,
+                      startdate: 1662425635,
+                      enddate: 1662458035,
+                      dataFields: 'hr,rr,snoring,sdnn_1',
+                    )) as WithingsSleepGetData; // */
+                  },
+                  child: Text('Get Sleep'),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final getsummaryrangesleepdata =
+                        await WithingsSleepGetSummaryDataManager(
+                                    accessToken: accessToken!)
+                                .fetch(WithingsSleepAPIURL.getSummaryRange(
+                                    accessToken: accessToken!,
+                                    startdateymd: '2022-09-06',
+                                    enddateymd: '2022-09-08',
+                                    dataFields:
+                                        'hr_average,hr_max,night_events,remsleepduration'))
+                            as WithingsSleepGetSummaryData; //Working */
+                  },
+                  child: Text('GetSumRan Sleep'),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final getsummarylastupdatesleepdata =
+                        await WithingsSleepGetSummaryDataManager(
+                                accessToken: accessToken!)
+                            .fetch(WithingsSleepAPIURL.getSummaryLastupdate(
+                      accessToken: accessToken!,
+                      lastupdate: 1662422035,
+                    )) as WithingsSleepGetSummaryData; //Working */
+                  },
+                  child: Text('GetSumUp Sleep'),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () async {
+                      final getmeasrange =
+                          await WithingsMeasureGetmeasDataManager(
+                                  accessToken: accessToken!)
+                              .fetch(WithingsMeasureAPIURL.getMeasRange(
+                        startdate: 1662584112,
+                        enddate: 1662630912,
+                        category: 1,
+                        accessToken: accessToken!,
+                        meastypes: '135,139', // ? useful
+                      )) as WithingsMeasureGetmeasData; //Working
+                    },
+                    child: Text('GetMeasRage')),
+                SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final getmeasupdate =
+                          await WithingsMeasureGetmeasDataManager(
+                                  accessToken: accessToken!)
+                              .fetch(WithingsMeasureAPIURL.getMeasLastupdate(
+                        lastupdate: 1662389635,
+                        accessToken: accessToken!,
+                        //meastypes: '54', // ? useful
+                      )) as WithingsMeasureGetmeasData; // Working
+                      //print(getmeasupdate);
+                    },
+                    child: Text('GetMeasUpdate')),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () async {
+                      final getactivityrange =
+                          await WithingsMeasureGetactivityDataManager(
+                                      accessToken: accessToken!)
+                                  .fetch(WithingsMeasureAPIURL.getActivityRange(
+                                      startdateymd: '2022-09-05',
+                                      enddateymd: '2022-09-05',
+                                      //dataFields: 'hr_average,hr_zone_0',
+                                      accessToken: accessToken!))
+                              as WithingsMeasureGetactivityData; // Check
+                      print(getactivityrange);
+                    },
+                    child: Text('GetRange activity')),
+                SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      final getactivityupate =
+                          await WithingsMeasureGetactivityDataManager(
+                                  accessToken: accessToken!)
+                              .fetch(
+                                  WithingsMeasureAPIURL.getActivityLastupdate(
+                        lastupdate: 1662335635,
+                        //dataFields: 'hr_average,hr_zone_0',
+                        accessToken: accessToken!,
+                      )) as WithingsMeasureGetactivityData; // Check
+                      print(getactivityupate);
+                    },
+                    child: Text('GetUpdate activity')),
+              ],
             ),
             ElevatedButton(
                 onPressed: () async {
-                  /*final getactivityrange =
-                      await WithingsMeasureGetactivityDataManager(
-                                  accessToken: accessToken!)
-                              .fetch(WithingsMeasureAPIURL.getActivityRange(
-                                  startdateymd: '2022-09-05',
-                                  enddateymd: '2022-09-05',
-                                  dataFields: 'hr_average,hr_zone_0',
-                                  accessToken: accessToken!))
-                          as WithingsMeasureGetactivityData; //working */
-                  /*final getactivityupate =
-                      await WithingsMeasureGetactivityDataManager(
-                              accessToken: accessToken!)
-                          .fetch(WithingsMeasureAPIURL.getActivityLastupdate(
-                    lastupdate: 1662335635,
-                    dataFields: 'hr_average,hr_zone_0',
-                    accessToken: accessToken!,
-                  )) as WithingsMeasureGetactivityData; //working */
-
                   /*final getintradayactivity =
                       await WithingsMeasureGetintradayactivityDataManager(
                               accessToken: accessToken!)
                           .fetch(WithingsMeasureAPIURL.getIntradayactivity(
-                            startdate: 1662389635,
-                            enddate: 1662404035,
+                            startdate: 1662584112,
+                            enddate: 1662630912,
+                            dataFields: 'spo2_auto',
                     accessToken: accessToken!,
                   )) as WithingsMeasureGetintradayactivityData;
                   print(getintradayactivity.body?.series?.timestamp?.distance); // WIP */
 
-                  /*final getmeasrange = await WithingsMeasureGetmeasDataManager(
-                          accessToken: accessToken!)
-                      .fetch(WithingsMeasureAPIURL.getMeasRange(
-                    startdate: 1662389635,
-                    enddate: 1662404035,
-                    accessToken: accessToken!,
-                    meastypes: '1',
-                  )) as WithingsMeasureGetmeasData; //WIP */
-
-                  /*final getmeasupdate = await WithingsMeasureGetmeasDataManager(
-                          accessToken: accessToken!)
-                      .fetch(WithingsMeasureAPIURL.getMeasLastupdate(
-                    lastupdate: 1662389635,
-                    accessToken: accessToken!,
-                    meastypes: '54',
-                  )) as WithingsMeasureGetmeasData; // WIP */
-
-                  /*final getactivityrange =
-                      await WithingsMeasureGetworkoutsDataManager(
-                                  accessToken: accessToken!)
-                              .fetch(WithingsMeasureAPIURL.getWorkoutsRange(
-                                  startdateymd: '2022-09-05',
-                                  enddateymd: '2022-09-05',
-                                  dataFields: 'hr_average,hr_zone_0',
-                                  accessToken: accessToken!))
-                          as WithingsMeasureGetworkoutsData; // working */
                   /*final getactivityupdate =
                       await WithingsMeasureGetworkoutsDataManager(
                                   accessToken: accessToken!)

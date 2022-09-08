@@ -1,249 +1,86 @@
+import 'dart:math';
+
 import 'package:withings_flutter/src/data/withingsData.dart';
 
 /// [WithingsMeasureGetmeasData] is a class that provides measures stored at a specific date
 class WithingsMeasureGetmeasData implements WithingsData {
-  /// Response status
-  int? status;
+  /// Array of measure group
+  List<Measuregrps>? measuregrps;
 
-  /// Response body
-  BodyMeasureGetmeas? body;
+  /*/// To know if there is more data to fetch or not
+  int? more;
+
+  /// Offset to use to retrieve the next data
+  int? offset;*/
 
   /// Default [WithingsMeasureGetmeasData] constructor
-  WithingsMeasureGetmeasData({this.status, this.body});
+  WithingsMeasureGetmeasData({
+    this.measuregrps,
+    //this.more,
+    //this.offset
+  });
 
   WithingsMeasureGetmeasData.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body =
-        json['body'] != null ? BodyMeasureGetmeas.fromJson(json['body']) : null;
-  }
-
-  @override
-  Map<String, dynamic> toJson<T extends WithingsData>() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (body != null) {
-      data['body'] = body!.toJson();
+    if (json['status'] == 0 && json['body'] != null) {
+      if (json['body']['measuregrps'].isNotEmpty) {
+        measuregrps = <Measuregrps>[];
+        json['body']['measuregrps'].forEach((v) {
+          measuregrps?.add(Measuregrps.fromJson(v));
+        });
+      }
+      //more = json['body']['more'];
+      //offset = json['body']['offset'];
     }
-    return data;
   }
 
   @override
   String toString() {
     return (StringBuffer('WithingsMeasureGetmeasData(')
-          ..write('status: $status, ')
-          ..write('body: $body')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class BodyMeasureGetmeas {
-  /// Server time at which the answer was generated
-  int? updatetime;
-
-  /// Timezone for the date
-  String? timezone;
-
-  /// For every measure/measurement made, a measure group is created
-  List<Measuregrps>? measuregrps;
-
-  /// To know if there is more data to fetch or not
-  int? more;
-
-  /// Offset to use to retrieve the next data
-  int? offset;
-
-  BodyMeasureGetmeas(
-      {this.updatetime,
-      this.timezone,
-      this.measuregrps,
-      this.more,
-      this.offset});
-
-  BodyMeasureGetmeas.fromJson(Map<String, dynamic> json) {
-    updatetime = json['updatetime'];
-    timezone = json['timezone'];
-    if (json['measuregrps'].isNotEmpty) {
-      measuregrps = <Measuregrps>[];
-      json['measuregrps'].forEach((v) {
-        measuregrps!.add(Measuregrps.fromJson(v));
-      });
-    }
-    more = json['more'];
-    offset = json['offset'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['updatetime'] = updatetime;
-    data['timezone'] = timezone;
-    if (measuregrps != null) {
-      data['measuregrps'] = measuregrps!.map((v) => v.toJson()).toList();
-    }
-    data['more'] = more;
-    data['offset'] = offset;
-    return data;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('BodyMeasureGetmeas(')
-          ..write('updatetime: $updatetime, ')
-          ..write('timezone: $timezone')
-          ..write('measuregrps: $measuregrps')
-          ..write('more: $more')
-          ..write('offset: $offset')
+          ..write('measuregrps: $measuregrps, ')
+          //..write('more: $more, ')
+          //..write('offset: $offset, ')
           ..write(')'))
         .toString();
   }
 }
 
 class Measuregrps {
-  /// Unique identifier of the measure group
-  int? grpid;
-
-  /// The way the measure was attributed to the user
-  int? attrib;
-
   /// UNIX timestamp when measures were taken
   int? date;
-
-  /// UNIX timestamp when measures were stored
-  int? created;
-
-  /// UNIX timestamp when measures were last updated
-  int? modified;
 
   /// Category for the measures in the group (see category input parameter)
   int? category;
 
-  /// ID of device that tracked the data
-  String? deviceid;
-
-  /// Array of objects (List of measures in the group)
-  List<Measures>? measures;
-
-  //String? comment; //deprecated
-
-  /// Timezone for the date
-  String? timezone;
-
-  Measuregrps(
-      {this.grpid,
-      this.attrib,
-      this.date,
-      this.created,
-      this.modified,
-      this.category,
-      this.deviceid,
-      this.measures,
-      //this.comment, //deprecated
-      this.timezone});
-
-  Measuregrps.fromJson(Map<String, dynamic> json) {
-    grpid = json['grpid'];
-    attrib = json['attrib'];
-    date = json['date'];
-    created = json['created'];
-    modified = json['modified'];
-    category = json['category'];
-    deviceid = json['deviceid'];
-    if (json['measures'].isNotEmpty) {
-      measures = <Measures>[];
-      json['measures'].forEach((v) {
-        measures!.add(Measures.fromJson(v));
-      });
-    }
-    //comment = json['comment']; //deprecated
-    timezone = json['timezone'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['grpid'] = grpid;
-    data['attrib'] = attrib;
-    data['date'] = date;
-    data['created'] = created;
-    data['modified'] = modified;
-    data['category'] = category;
-    data['deviceid'] = deviceid;
-    if (measures != null) {
-      data['measures'] = measures!.map((v) => v.toJson()).toList();
-    }
-    //data['comment'] = comment; //deprecated
-    data['timezone'] = timezone;
-    return data;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('Measuregrps(')
-          ..write('grpid: $grpid, ')
-          ..write('attrib: $attrib')
-          ..write('date: $date')
-          ..write('created: $created')
-          ..write('modified: $modified')
-          ..write('category: $category')
-          ..write('deviceid: $deviceid')
-          ..write('measures: $measures')
-          ..write('timezone: $timezone')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class Measures {
-  /// Value for the measure in S.I. units (kilograms, meters etc...).
-  /// Value should be multiplied by 10 to the power of units to get the real value
-  int? value;
-
   /// Type of the measure. See meastypes input parameter
   int? type;
 
-  /// Power of ten to multiply the value field to get the real value.
-  ///Formula: value * 10^unit = real value.
-  int? unit;
+  /// Value for the measure in S.I. units (kilograms, meters etc...).
+  double? value;
 
-  // int? algo; // deprecated
-  // int? fm; // deprecated
-  // int? fw; // deprecated
-
-  Measures({
-    this.value,
+  Measuregrps({
+    this.date,
+    this.category,
     this.type,
-    this.unit,
-    //this.algo, // deprecated
-    //this.fm, // deprecated
-    //this.fw, // deprecated
+    this.value,
   });
 
-  Measures.fromJson(Map<String, dynamic> json) {
-    value = json['value'];
-    type = json['type'];
-    unit = json['unit'];
-    // algo = json['algo']; // deprecated
-    // fm = json['fm']; // deprecated
-    // fw = json['fw']; // deprecated
+  Measuregrps.fromJson(Map<String, dynamic> json) {
+    date = json['date'];
+    category = json['category'];
+    type = json['measures'][0]['type'];
+    value = json['measures'][0]['value'].toDouble() *
+        pow(10, json['measures'][0]['unit']);
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['value'] = value;
-    data['type'] = type;
-    data['unit'] = unit;
-    //data['algo'] = algo; // deprecated
-    //data['fm'] = fm; // deprecated
-    //data['fw'] = fw; // deprecated
-    return data;
-  }
-
   @override
   String toString() {
     return (StringBuffer('Measuregrps(')
+          ..write('date: $date, ')
+          ..write('category: $category, ')
+          ..write('type: $type, ')
           ..write('value: $value, ')
-          ..write('type: $type')
-          ..write('unit: $unit')
           ..write(')'))
         .toString();
   }
 }
+
+// more and offset no more present in the response

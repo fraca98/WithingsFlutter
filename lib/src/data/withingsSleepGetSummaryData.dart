@@ -3,45 +3,9 @@ import 'package:withings_flutter/src/data/withingsData.dart';
 /// [WithingsSleepGetSummaryData] is a class that returns sleep activity summaries,
 /// which are an aggregation of all the data captured at high frequency during the sleep activity
 class WithingsSleepGetSummaryData implements WithingsData {
-  /// Response status
-  int? status;
-
-  /// Response data
-  BodySleepGetSummary? body;
-
   /// Default [WithingsSleepGetSummaryData] constructor
-  WithingsSleepGetSummaryData({this.status, this.body});
+  WithingsSleepGetSummaryData({this.more, this.offset});
 
-  factory WithingsSleepGetSummaryData.fromJson(Map<String, dynamic> json) {
-    return WithingsSleepGetSummaryData(
-      status: json['status'],
-      body: json['body'] != null
-          ? BodySleepGetSummary.fromJson(json['body'])
-          : null,
-    );
-  }
-
-  @override
-  Map<String, dynamic> toJson<T extends WithingsData>() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (body != null) {
-      data['body'] = body!.toJson();
-    }
-    return data;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('WithingsSleepGetSummaryData(')
-          ..write('status: $status, ')
-          ..write('body: $body, ')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class BodySleepGetSummary {
   /// Array of SeriesSleepGetSummary objects
   List<SeriesSleepGetSummary>? series;
 
@@ -51,32 +15,22 @@ class BodySleepGetSummary {
   /// Offset to use to retrieve the next data
   int? offset;
 
-  BodySleepGetSummary({this.series, this.more, this.offset});
-
-  BodySleepGetSummary.fromJson(Map<String, dynamic> json) {
-    if (json['series'].isNotEmpty) {
-      series = <SeriesSleepGetSummary>[];
-      json['series'].forEach((v) {
-        series!.add(SeriesSleepGetSummary.fromJson(v));
-      });
+  WithingsSleepGetSummaryData.fromJson(Map<String, dynamic> json) {
+    if (json['status'] == 0 && json['body'] != null) {
+      if (json['body']['series'].isNotEmpty) {
+        series = <SeriesSleepGetSummary>[];
+        json['body']['series'].forEach((v) {
+          series?.add(SeriesSleepGetSummary.fromJson(v));
+        });
+      }
+      more = json['body']['more'];
+      offset = json['body']['offset'];
     }
-    more = json['more'];
-    offset = json['offset'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (series != null) {
-      data['series'] = series!.map((v) => v.toJson()).toList();
-    }
-    data['more'] = more;
-    data['offset'] = offset;
-    return data;
   }
 
   @override
   String toString() {
-    return (StringBuffer('BodySleepGetSummary(')
+    return (StringBuffer('WithingsSleepGetSummaryData(')
           ..write('series: $series, ')
           ..write('more: $more, ')
           ..write('offset: $offset, ')
@@ -86,84 +40,35 @@ class BodySleepGetSummary {
 }
 
 class SeriesSleepGetSummary {
-  /// Timezone for the date
-  String? timezone;
-
-  /// The source for sleep data. Value can be 16 for a tracker or 32 for a Sleep Monitor
-  int? model;
-  int? modelId;
-
   /// The starting datetime for the sleep state data
   int? startdate;
 
-  /// The end datetime for the sleep data. A single call can span up to 7 days maximum.
-  /// To cover a wider time range, you will need to perform multiple calls
+  /// The end datetime for the sleep data
   int? enddate;
 
   /// Date at which the measure was taken or entered
   String? date;
 
-  /// The timestamp of the creation
-  int? created;
-
-  /// The timestamp of the last modification
-  int? modified;
-
   /// Object Data (Details of sleep)
   DataSleepGetSummary? data;
 
-  SeriesSleepGetSummary(
-      {this.timezone,
-      this.model,
-      this.modelId,
-      this.startdate,
-      this.enddate,
-      this.date,
-      this.created,
-      this.modified,
-      this.data});
+  SeriesSleepGetSummary({this.startdate, this.enddate, this.data});
 
   SeriesSleepGetSummary.fromJson(Map<String, dynamic> json) {
-    timezone = json['timezone'];
-    model = json['model'];
-    modelId = json['model_id'];
     startdate = json['startdate'];
     enddate = json['enddate'];
     date = json['date'];
-    created = json['created'];
-    modified = json['modified'];
     data = json['data'] != null
         ? DataSleepGetSummary.fromJson(json['data'])
         : null;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['timezone'] = timezone;
-    data['model'] = model;
-    data['model_id'] = modelId;
-    data['startdate'] = startdate;
-    data['enddate'] = enddate;
-    data['date'] = date;
-    data['created'] = created;
-    data['modified'] = modified;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
-
   @override
   String toString() {
     return (StringBuffer('SeriesSleepGetSummary(')
-          ..write('timezone: $timezone, ')
-          ..write('model: $model, ')
-          ..write('model_id: $modelId, ')
           ..write('startdate: $startdate, ')
           ..write('enddate: $enddate, ')
           ..write('date: $date, ')
-          ..write('created: $created, ')
-          ..write('modified: $modified, ')
           ..write('data: $data, ')
           ..write(')'))
         .toString();
@@ -182,7 +87,7 @@ class DataSleepGetSummary {
   int? hrMin;
   int? lightsleepduration;
   int? nbRemEpisodes;
-  //List<Null>? nightEvents;
+  List? nightEvents;
   int? outOfBedCount;
   int? remsleepduration;
   int? rrAverage;
@@ -212,7 +117,7 @@ class DataSleepGetSummary {
       this.hrMin,
       this.lightsleepduration,
       this.nbRemEpisodes,
-      //this.nightEvents,
+      this.nightEvents,
       this.outOfBedCount,
       this.remsleepduration,
       this.rrAverage,
@@ -242,12 +147,7 @@ class DataSleepGetSummary {
     hrMin = json['hr_min'];
     lightsleepduration = json['lightsleepduration'];
     nbRemEpisodes = json['nb_rem_episodes'];
-    /*if (json['night_events'].isNotEmpty) {
-      nightEvents = <Null>[];
-      json['night_events'].forEach((v) {
-        nightEvents!.add(Null.fromJson(v));
-      });
-    }*/
+    nightEvents = json['night_events'];
     outOfBedCount = json['out_of_bed_count'];
     remsleepduration = json['remsleepduration'];
     rrAverage = json['rr_average'];
@@ -266,41 +166,6 @@ class DataSleepGetSummary {
     waso = json['waso'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['apnea_hypopnea_index'] = apneaHypopneaIndex;
-    data['asleepduration'] = asleepduration;
-    data['breathing_disturbances_intensity'] = breathingDisturbancesIntensity;
-    data['deepsleepduration'] = deepsleepduration;
-    //data['durationtosleep'] = durationtosleep; //deprecated
-    //data['durationtowakeup'] = durationtowakeup; //deprecated
-    data['hr_average'] = hrAverage;
-    data['hr_max'] = hrMax;
-    data['hr_min'] = hrMin;
-    data['lightsleepduration'] = lightsleepduration;
-    data['nb_rem_episodes'] = nbRemEpisodes;
-    /*if (nightEvents != null) {
-      data['night_events'] = nightEvents!.map((v) => v.toJson()).toList();
-    }*/
-    data['out_of_bed_count'] = outOfBedCount;
-    data['remsleepduration'] = remsleepduration;
-    data['rr_average'] = rrAverage;
-    data['rr_max'] = rrMax;
-    data['rr_min'] = rrMin;
-    data['sleep_efficiency'] = sleepEfficiency;
-    data['sleep_latency'] = sleepLatency;
-    data['sleep_score'] = sleepScore;
-    data['snoring'] = snoring;
-    data['snoringepisodecount'] = snoringepisodecount;
-    data['total_sleep_time'] = totalSleepTime;
-    data['total_timeinbed'] = totalTimeinbed;
-    data['wakeup_latency'] = wakeupLatency;
-    data['wakeupcount'] = wakeupcount;
-    data['wakeupduration'] = wakeupduration;
-    data['waso'] = waso;
-    return data;
-  }
-
   @override
   String toString() {
     return (StringBuffer('DataSleepGetSummary(')
@@ -309,7 +174,12 @@ class DataSleepGetSummary {
           ..write(
               'breathing_disturbances_intensity: $breathingDisturbancesIntensity, ')
           ..write('deepsleepduration: $deepsleepduration, ')
+          ..write('hr_average: $hrAverage, ')
+          ..write('hr_max: $hrMax, ')
+          ..write('hr_min: $hrMin, ')
+          ..write('lightsleepduration: $nbRemEpisodes, ')
           ..write('nb_rem_episodes: $nbRemEpisodes, ')
+          ..write('night_events: $nightEvents, ')
           ..write('out_of_bed_count: $outOfBedCount, ')
           ..write('remsleepduration: $remsleepduration, ')
           ..write('rr_average: $rrAverage, ')
@@ -331,5 +201,4 @@ class DataSleepGetSummary {
   }
 }
 
-// TODO: nightEvents
-// nightEvents? di che tipo è l'array?
+//TODO: Adattare JSON per list nel caso update

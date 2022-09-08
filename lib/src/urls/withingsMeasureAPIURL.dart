@@ -109,7 +109,10 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
 
   /// Generates a [WithingsMeasureAPIURL] to get [] of a specific date range
   /// between [startdate] and [enddate] of a given user [accessToken], defining the data fields we want
-  /// to retrieve [dataFields]
+  /// to retrieve [dataFields].
+  ///  - If your input startdate and enddate are separated by more than 24h, only the first 24h after startdate will be returned.
+  ///  - If no startdate and enddate are passed as parameters, the most recent activity data will be returned.
+
   factory WithingsMeasureAPIURL.getIntradayactivity({
     int? startdate,
     int? enddate,
