@@ -1,7 +1,7 @@
 import 'package:withings_flutter/src/data/withingsData.dart';
 
-/// [WithingsMeasureGetactivityData] is a class that provides daily aggregated activity data of a user
-class WithingsMeasureGetactivityData implements WithingsData {
+/// [WithingsMeasureGetActivityData] is a class that provides daily aggregated activity data of a user
+class WithingsMeasureGetActivityData implements WithingsData {
   /// Array of objects (Activities)
   List<Activities>? activities;
 
@@ -11,9 +11,9 @@ class WithingsMeasureGetactivityData implements WithingsData {
   /// Offset to use to retrieve the next data
   int? offset;
 
-  WithingsMeasureGetactivityData({this.activities, this.more, this.offset});
+  WithingsMeasureGetActivityData({this.activities, this.more, this.offset});
 
-  WithingsMeasureGetactivityData.fromJson(Map<String, dynamic> json) {
+  WithingsMeasureGetActivityData.fromJson(Map<String, dynamic> json) {
     if (json['status'] == 0 && json['body'] != null) {
       if (json['body']['activities'].isNotEmpty) {
         activities = <Activities>[];
@@ -28,7 +28,7 @@ class WithingsMeasureGetactivityData implements WithingsData {
 
   @override
   String toString() {
-    return (StringBuffer('WithingsMeasureGetactivityData(')
+    return (StringBuffer('WithingsMeasureGetActivityData(')
           ..write('activities: $activities, ')
           ..write('more: $more, ')
           ..write('offset: $offset, ')

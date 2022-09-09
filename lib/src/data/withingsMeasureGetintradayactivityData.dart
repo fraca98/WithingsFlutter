@@ -1,14 +1,14 @@
 import 'package:withings_flutter/src/data/withingsData.dart';
 
-/// [WithingsMeasureGetintradayactivityData] is a class that returns user activity data captured at high frequency
-class WithingsMeasureGetintradayactivityData implements WithingsData {
+/// [WithingsMeasureGetIntradayactivityData] is a class that returns user activity data captured at high frequency
+class WithingsMeasureGetIntradayactivityData implements WithingsData {
   /// List of ObjGetIntradayAcitvity
   List<ObjGetIntradayAcitvity>? series;
 
-  /// Default [WithingsMeasureGetintradayactivityData] constructor
-  WithingsMeasureGetintradayactivityData({this.series});
+  /// Default [WithingsMeasureGetIntradayactivityData] constructor
+  WithingsMeasureGetIntradayactivityData({this.series});
 
-  WithingsMeasureGetintradayactivityData.fromJson(Map<String, dynamic> json) {
+  WithingsMeasureGetIntradayactivityData.fromJson(Map<String, dynamic> json) {
     if (json['status'] == 0 && json['body'] != null) {
       if (json['body']['series'].isNotEmpty) {
         series = <ObjGetIntradayAcitvity>[];
@@ -31,7 +31,7 @@ class WithingsMeasureGetintradayactivityData implements WithingsData {
   }
   @override
   String toString() {
-    return (StringBuffer('WithingsMeasureGetintradayactivityData(')
+    return (StringBuffer('WithingsMeasureGetIntradayactivityData(')
           ..write('seris:  $series, ')
           ..write(')'))
         .toString();

@@ -2,7 +2,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsMeasureAPIURL] is a class that expresses multiple factory
 /// constructors to be used to generate Withings Web APIs urls to fetch
-/// [WithingsMeasureGetmeasData],[],[],[]
+/// [WithingsMeasureGetMeasData],[],[],[]
 class WithingsMeasureAPIURL extends WithingsAPIURL {
   ///Default [WithingsMeasureAPIURL] constructor
   WithingsMeasureAPIURL(
@@ -13,7 +13,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     this.authorizationHeader = authorizationHeader;
   } // WithingsMeasureAPIURL
 
-  /// Generates a [WithingsMeasureAPIURL] to get [WithingsMeasureGetmeasData] of a specific date range
+  /// Generates a [WithingsMeasureAPIURL] to get [WithingsMeasureGetMeasData] of a specific date range
   /// between [startdate] and [enddate] of a given user [accessToken], defining the measures we want
   /// to retrieve [meastypes]. The offset [offset] is used if we have more data to retrieve, category [category]
   /// is used to request for real measures or user objectives
@@ -39,7 +39,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     );
   }
 
-  /// Generates a [WithingsMeasureAPIURL] to get [WithingsMeasureGetmeasData] from the last time that data
+  /// Generates a [WithingsMeasureAPIURL] to get [WithingsMeasureGetMeasData] from the last time that data
   /// were updated or created after the date in [lastupdate] of a given user [accessToken], defining the measures we want
   /// to retrieve [meastypes]. The offset [offset] is used if we have more data to retrieve, category [category]
   /// is used to request for real measures or user objectives

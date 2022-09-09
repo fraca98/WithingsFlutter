@@ -2,7 +2,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsSleepAPIURL] is a class that expresses multiple factory
 /// constructors to be used to generate Withings Web APIs urls to fetch
-/// [WithingsSleepGetData],[WithingsMeasureGetactivityData]
+/// [WithingsSleepGetData],[WithingsMeasureGetActivityData]
 class WithingsSleepAPIURL extends WithingsAPIURL {
   ///Default [WithingsSleepAPIURL] constructor
   WithingsSleepAPIURL(
@@ -34,7 +34,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
     );
   }
 
-  /// Generates a [WithingsSleepAPIURL] to get [WithingsMeasureGetactivityData] of a specific date range
+  /// Generates a [WithingsSleepAPIURL] to get [WithingsMeasureGetActivityData] of a specific date range
   /// between [startdateymd] and [enddateymd] of a given user [accessToken], defining the data fields we want
   /// to retrieve [dataFields]
   factory WithingsSleepAPIURL.getSummaryRange({
@@ -54,7 +54,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
     );
   }
 
-  /// Generates a [WithingsSleepAPIURL] to get [WithingsMeasureGetactivityData] from the last time that data
+  /// Generates a [WithingsSleepAPIURL] to get [WithingsMeasureGetActivityData] from the last time that data
   /// were updated or created after the date in [lastupdate] of a given user [accessToken], defining the data fields we want
   /// to retrieve [dataFields]
   factory WithingsSleepAPIURL.getSummaryLastupdate({

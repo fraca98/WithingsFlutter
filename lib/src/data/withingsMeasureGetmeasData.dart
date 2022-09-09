@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:withings_flutter/src/data/withingsData.dart';
 
-/// [WithingsMeasureGetmeasData] is a class that provides measures stored at a specific date
-class WithingsMeasureGetmeasData implements WithingsData {
+/// [WithingsMeasureGetMeasData] is a class that provides measures stored at a specific date
+class WithingsMeasureGetMeasData implements WithingsData {
   /// Array of measure group
   List<Measuregrps>? measuregrps;
 
@@ -13,14 +13,14 @@ class WithingsMeasureGetmeasData implements WithingsData {
   /// Offset to use to retrieve the next data
   int? offset;*/
 
-  /// Default [WithingsMeasureGetmeasData] constructor
-  WithingsMeasureGetmeasData({
+  /// Default [WithingsMeasureGetMeasData] constructor
+  WithingsMeasureGetMeasData({
     this.measuregrps,
     //this.more,
     //this.offset
   });
 
-  WithingsMeasureGetmeasData.fromJson(Map<String, dynamic> json) {
+  WithingsMeasureGetMeasData.fromJson(Map<String, dynamic> json) {
     if (json['status'] == 0 && json['body'] != null) {
       if (json['body']['measuregrps'].isNotEmpty) {
         measuregrps = <Measuregrps>[];
@@ -35,7 +35,7 @@ class WithingsMeasureGetmeasData implements WithingsData {
 
   @override
   String toString() {
-    return (StringBuffer('WithingsMeasureGetmeasData(')
+    return (StringBuffer('WithingsMeasureGetMeasData(')
           ..write('measuregrps: $measuregrps, ')
           //..write('more: $more, ')
           //..write('offset: $offset, ')

@@ -1,9 +1,9 @@
 import 'package:logger/logger.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 
-/// [WithingsMeasureGetmeasDataManager] is a class the manages the requests related to [WithingsMeasureGetmeasData]
-class WithingsMeasureGetmeasDataManager extends WithingsDataManager {
-  WithingsMeasureGetmeasDataManager({required String accessToken})
+/// [WithingsMeasureGetMeasDataManager] is a class the manages the requests related to [WithingsMeasureGetMeasData]
+class WithingsMeasureGetMeasDataManager extends WithingsDataManager {
+  WithingsMeasureGetMeasDataManager({required String accessToken})
       : super(
           accessToken: accessToken,
         );
@@ -18,17 +18,17 @@ class WithingsMeasureGetmeasDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsData ret = _extractWithingsMeasureGetmeasData(response);
+    WithingsData ret = _extractWithingsMeasureGetMeasData(response);
     return ret;
   } // fetch
 
-  /// A private method that extracts [WithingsMeasureGetmeasData] from the given response.
-  WithingsMeasureGetmeasData _extractWithingsMeasureGetmeasData(
+  /// A private method that extracts [WithingsMeasureGetMeasData] from the given response.
+  WithingsMeasureGetMeasData _extractWithingsMeasureGetMeasData(
       dynamic response) {
     if (response['status'] == 0) {
-      return WithingsMeasureGetmeasData.fromJson(response);
+      return WithingsMeasureGetMeasData.fromJson(response);
     } else {
-      return WithingsMeasureGetmeasData();
+      return WithingsMeasureGetMeasData();
     }
-  } // _extractWithingsMeasureGetmeasData
-} // WithingsMeasureGetmeasDataManager
+  } // _extractWithingsMeasureGetMeasData
+} // WithingsMeasureGetMeasDataManager

@@ -15,11 +15,12 @@ class Heart extends StatelessWidget {
           onPressed: () async {
             final listheartdata =
                 await WithingsHeartListDataManager(accessToken: 'accessToken!')
-                        .fetch(WithingsHeartAPIURL.list(
-                            startdate: 1661873383,
-                            enddate: 1661884183,
-                            accessToken: accessToken!))
-                    as WithingsHeartListData; //Working */
+                    .fetch(
+              WithingsHeartAPIURL.list(
+                  startdate: 1661873383,
+                  enddate: 1661884183,
+                  accessToken: accessToken!),
+            ) as WithingsHeartListData; //Working */
           },
           child: Text('List Heart'),
         ),

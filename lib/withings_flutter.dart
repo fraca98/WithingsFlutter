@@ -16,10 +16,10 @@ export 'package:withings_flutter/src/data/withingsHeartGetData.dart';
 export 'package:withings_flutter/src/data/withingsHeartListData.dart';
 export 'package:withings_flutter/src/data/withingsSleepGetData.dart';
 export 'package:withings_flutter/src/data/withingsSleepGetSummaryData.dart';
-export 'package:withings_flutter/src/data/withingsMeasureGetmeasData.dart';
-export 'package:withings_flutter/src/data/withingsMeasureGetactivityData.dart';
-export 'package:withings_flutter/src/data/withingsMeasureGetworkoutsData.dart';
-export 'package:withings_flutter/src/data/withingsMeasureGetintradayactivityData.dart';
+export 'package:withings_flutter/src/data/withingsMeasureGetMeasData.dart';
+export 'package:withings_flutter/src/data/withingsMeasureGetActivityData.dart';
+export 'package:withings_flutter/src/data/withingsMeasureGetWorkoutsData.dart';
+export 'package:withings_flutter/src/data/withingsMeasureGetIntradayactivityData.dart';
 
 //Managers
 export 'package:withings_flutter/src/managers/withingsDataManager.dart';
@@ -28,6 +28,6 @@ export 'package:withings_flutter/src/managers/withingsHeartListDataManager.dart'
 export 'package:withings_flutter/src/managers/withingsSleepGetDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsSleepGetSummaryDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsMeasureGetactivityDataManager.dart';
-export 'package:withings_flutter/src/managers/withingsMeasureGetintradayactivityDataManager.dart';
-export 'package:withings_flutter/src/managers/withingsMeasureGetmeasDataManager.dart';
-export 'package:withings_flutter/src/managers/withingsMeasureGetworkoutsDataManager.dart';
+export 'package:withings_flutter/src/managers/withingsMeasureGetIntradayactivityDataManager.dart';
+export 'package:withings_flutter/src/managers/withingsMeasureGetMeasDataManager.dart';
+export 'package:withings_flutter/src/managers/withingsMeasureGetWorkoutsDataManager.dart';

@@ -1,7 +1,7 @@
 import 'package:withings_flutter/src/data/withingsData.dart';
 
-/// [WithingsMeasureGetworkoutsData] is a class that returns workout summaries, which are an aggregation all data that was captured during that workout
-class WithingsMeasureGetworkoutsData implements WithingsData {
+/// [WithingsMeasureGetWorkoutsData] is a class that returns workout summaries, which are an aggregation all data that was captured during that workout
+class WithingsMeasureGetWorkoutsData implements WithingsData {
   /// List of objects (SeriesMeasureGetworkouts)
   List<SeriesMeasureGetworkouts>? series;
 
@@ -11,10 +11,10 @@ class WithingsMeasureGetworkoutsData implements WithingsData {
   /// Offset to use to retrieve the next data
   int? offset;
 
-  /// Default [WithingsMeasureGetworkoutsData] constructor
-  WithingsMeasureGetworkoutsData({this.series, this.more, this.offset});
+  /// Default [WithingsMeasureGetWorkoutsData] constructor
+  WithingsMeasureGetWorkoutsData({this.series, this.more, this.offset});
 
-  WithingsMeasureGetworkoutsData.fromJson(Map<String, dynamic> json) {
+  WithingsMeasureGetWorkoutsData.fromJson(Map<String, dynamic> json) {
     if (json['status'] == 0 && json['body'] != null) {
       if (json['body']['series'].isNotEmpty) {
         series = <SeriesMeasureGetworkouts>[];
@@ -29,7 +29,7 @@ class WithingsMeasureGetworkoutsData implements WithingsData {
 
   @override
   String toString() {
-    return (StringBuffer('WithingsMeasureGetworkoutsData(')
+    return (StringBuffer('WithingsMeasureGetWorkoutsData(')
           ..write('series: $series, ')
           ..write('more: $more, ')
           ..write('offset: $offset, ')

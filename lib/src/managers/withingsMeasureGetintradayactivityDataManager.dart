@@ -1,10 +1,10 @@
 import 'package:logger/logger.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 
-/// [WithingsMeasureGetintradayactivityDataManager] is a class the manages the requests related to [WithingsMeasureGetintradayactivityData]
-class WithingsMeasureGetintradayactivityDataManager
+/// [WithingsMeasureGetIntradayactivityDataManager] is a class the manages the requests related to [WithingsMeasureGetintradayactivityData]
+class WithingsMeasureGetIntradayactivityDataManager
     extends WithingsDataManager {
-  WithingsMeasureGetintradayactivityDataManager({required String accessToken})
+  WithingsMeasureGetIntradayactivityDataManager({required String accessToken})
       : super(
           accessToken: accessToken,
         );
@@ -24,13 +24,13 @@ class WithingsMeasureGetintradayactivityDataManager
     return ret;
   } // fetch
 
-  /// A private method that extracts [WithingsMeasureGetintradayactivityData] from the given response.
-  WithingsMeasureGetintradayactivityData
+  /// A private method that extracts [WithingsMeasureGetIntradayactivityData] from the given response.
+  WithingsMeasureGetIntradayactivityData
       _extractWithingsMeasureGetaintradayactivityData(dynamic response) {
     if (response['status'] == 0) {
-      return WithingsMeasureGetintradayactivityData.fromJson(response);
+      return WithingsMeasureGetIntradayactivityData.fromJson(response);
     } else {
-      return WithingsMeasureGetintradayactivityData();
+      return WithingsMeasureGetIntradayactivityData();
     }
-  } // _extractWithingsMeasureGetaintradayactivityData
-} // WithingsMeasureGetaintradayactivityDataManager
+  } // _extractWithingsMeasureGetaIntradayactivityData
+} // WithingsMeasureGetaIntradayactivityDataManager

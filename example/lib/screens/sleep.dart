@@ -33,14 +33,14 @@ class Sleep extends StatelessWidget {
                 await WithingsSleepGetSummaryDataManager(
                             accessToken: accessToken!)
                         .fetch(WithingsSleepAPIURL.getSummaryRange(
-                            accessToken: 'accessToken!',
+                            accessToken: accessToken!,
                             startdateymd: '2022-09-06',
                             enddateymd: '2022-09-08',
                             dataFields:
                                 'hr_average,hr_max,night_events,remsleepduration'))
                     as WithingsSleepGetSummaryData; //Working */
           },
-          child: Text('GetSumRan Sleep'),
+          child: Text('GetSummaryRange Sleep'),
         ),
         SizedBox(
           width: 5,
@@ -55,7 +55,7 @@ class Sleep extends StatelessWidget {
               lastupdate: 1662422035,
             )) as WithingsSleepGetSummaryData; //Working */
           },
-          child: Text('GetSumUp Sleep'),
+          child: Text('GetSummaryUpdate Sleep'),
         ),
       ],
     );
