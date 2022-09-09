@@ -119,7 +119,7 @@ class WithingsConnector {
       accessToken = response.data['body']['access_token'] as String;
       refreshToken = response.data['body']['refresh_token'] as String;
     } catch (e) {
-      print(e);
+      //print(e);
     }
 
     return [accessToken, refreshToken];
