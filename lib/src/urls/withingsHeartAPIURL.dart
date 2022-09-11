@@ -15,11 +15,11 @@ class WithingsHeartAPIURL extends WithingsAPIURL {
   } // WithingsHeartAPIURL
 
   /// Generates a [WithingsHeartAPIURL] to get [WithingsHeartListData] of a specific date range
-  /// between [startdate] and [enddate] of a given user [accessToken]. The offset [offset] is used if we have more
+  /// between [startdate] and [enddate], if specified, of a given user [accessToken]. The offset [offset] is used if we have more
   /// data to retrieve
   factory WithingsHeartAPIURL.list({
-    required int startdate,
-    required int enddate,
+    int? startdate,
+    int? enddate,
     required String accessToken,
     int? offset,
   }) {

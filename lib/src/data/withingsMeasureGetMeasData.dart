@@ -51,36 +51,55 @@ class Measuregrps {
   /// Category for the measures in the group (see category input parameter)
   int? category;
 
-  /// Type of the measure. See meastypes input parameter
-  int? type;
-
-  /// Value for the measure in S.I. units (kilograms, meters etc...).
-  double? value;
+  /// List of single measures
+  List<SingleMeas>? measures;
 
   Measuregrps({
     this.date,
     this.category,
-    this.type,
-    this.value,
+    this.measures,
   });
 
   Measuregrps.fromJson(Map<String, dynamic> json) {
     date = json['date'];
     category = json['category'];
-    type = json['measures'][0]['type'];
-    value = json['measures'][0]['value'].toDouble() *
-        pow(10, json['measures'][0]['unit']);
+    measures = <SingleMeas>[];
+    json['measures'].forEach((v) {
+      measures?.add(SingleMeas.fromJson(v));
+    });
   }
   @override
   String toString() {
     return (StringBuffer('Measuregrps(')
           ..write('date: $date, ')
           ..write('category: $category, ')
+          ..write('measures: $measures, ')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class SingleMeas {
+  /// Type of the measure. See meastypes input parameter
+  int? type;
+
+  /// Value for the measure in S.I. units (kilograms, meters etc...).
+  double? value;
+
+  SingleMeas({this.type, this.value});
+
+  SingleMeas.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
+    value = json['value'].toDouble() * pow(10, json['unit']);
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SingleMeas(')
           ..write('type: $type, ')
           ..write('value: $value, ')
           ..write(')'))
         .toString();
   }
 }
-
 // more and offset no more present in the response

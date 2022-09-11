@@ -17,10 +17,11 @@ class Heart extends StatelessWidget {
                 await WithingsHeartListDataManager(accessToken: 'accessToken!')
                     .fetch(
               WithingsHeartAPIURL.list(
-                  startdate: 1661873383,
-                  enddate: 1661884183,
+                  //startdate: 1661873383,
+                  //enddate: 1661884183,
                   accessToken: accessToken!),
             ) as WithingsHeartListData; //Working */
+            print(listheartdata);
           },
           child: Text('List Heart'),
         ),
@@ -35,6 +36,7 @@ class Heart extends StatelessWidget {
               accessToken: accessToken!,
               signalId: 157847052,
             )) as WithingsHeartGetData; //Working */
+            print(getheartdata);
           },
           child: Text('Get Heart'),
         ),

@@ -16,12 +16,13 @@ class Measures extends StatelessWidget {
               final getmeasrange = await WithingsMeasureGetMeasDataManager(
                       accessToken: accessToken!)
                   .fetch(WithingsMeasureAPIURL.getMeasRange(
-                startdate: 1662584112,
-                enddate: 1662630912,
+                startdate: 1662857663,
+                enddate: 1662882863,
                 category: 1,
                 accessToken: accessToken!,
-                meastypes: '135,139', // ? useful
+                //meastypes: '1', // ? useful
               )) as WithingsMeasureGetMeasData; //Working
+              print(getmeasrange);
             },
             child: Text('GetMeasRange')),
         SizedBox(
@@ -32,11 +33,11 @@ class Measures extends StatelessWidget {
               final getmeasupdate = await WithingsMeasureGetMeasDataManager(
                       accessToken: accessToken!)
                   .fetch(WithingsMeasureAPIURL.getMeasLastupdate(
-                lastupdate: 1662389635,
+                lastupdate: 1662920834,
                 accessToken: accessToken!,
-                //meastypes: '54', // ? useful
+                //meastypes: '11', // ? useful
               )) as WithingsMeasureGetMeasData; // Working
-              //print(getmeasupdate);
+              print(getmeasupdate);
             },
             child: Text('GetMeasUpdate')),
         ElevatedButton(
@@ -45,9 +46,9 @@ class Measures extends StatelessWidget {
                   await WithingsMeasureGetActivityDataManager(
                               accessToken: accessToken!)
                           .fetch(WithingsMeasureAPIURL.getActivityRange(
-                              startdateymd: '2022-09-05',
-                              enddateymd: '2022-09-05',
-                              //dataFields: 'hr_average,hr_zone_0',
+                              startdateymd: '2022-09-08',
+                              enddateymd: '2022-09-09',
+                              //dataFields: 'hr_min',
                               accessToken: accessToken!))
                       as WithingsMeasureGetActivityData; // Working
               print(getactivityrange);
@@ -75,9 +76,9 @@ class Measures extends StatelessWidget {
                   await WithingsMeasureGetIntradayactivityDataManager(
                           accessToken: accessToken!)
                       .fetch(WithingsMeasureAPIURL.getIntradayactivity(
-                startdate: 1662584112,
-                enddate: 1662630912,
-                dataFields: 'spo2_auto',
+                startdate: 1662738923,
+                enddate: 1662746123,
+                dataFields: 'heart_rate', // Gives only these value and not all in the response
                 accessToken: accessToken!,
               )) as WithingsMeasureGetIntradayactivityData; //Working
             },
@@ -88,10 +89,10 @@ class Measures extends StatelessWidget {
                   await WithingsMeasureGetWorkoutsDataManager(
                               accessToken: accessToken!)
                           .fetch(WithingsMeasureAPIURL.getWorkoutsRange(
-                              startdateymd: '2022-09-05',
-                              enddateymd: '2022-09-05',
+                              startdateymd: '2022-09-09',
+                              enddateymd: '2022-09-09',
                               accessToken: accessToken!))
-                      as WithingsMeasureGetWorkoutsData; // Check
+                      as WithingsMeasureGetWorkoutsData; //
               print(getworkoutrange);
             },
             child: Text('GetWorkoutRange')),
@@ -104,9 +105,9 @@ class Measures extends StatelessWidget {
                   await WithingsMeasureGetWorkoutsDataManager(
                               accessToken: accessToken!)
                           .fetch(WithingsMeasureAPIURL.getWorkoutsLastupdate(
-                              lastupdate: 1662335635,
+                              lastupdate: 1662608537,
                               accessToken: accessToken!))
-                      as WithingsMeasureGetWorkoutsData; // Check
+                      as WithingsMeasureGetWorkoutsData; //
               print(getworkoutupdate);
             },
             child: Text('GetWorkoutUpdate')),

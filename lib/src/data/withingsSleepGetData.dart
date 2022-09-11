@@ -32,6 +32,12 @@ class SeriesSleepGet {
   /// The state of sleeping
   int? state;
 
+  /// The starting datetime for the sleep state data
+  int? startdate;
+
+  /// The end datetime for the sleep data
+  int? enddate;
+
   /// Series (Heart rate)
   SeriesTimestampSleepGet? hr;
 
@@ -48,10 +54,12 @@ class SeriesSleepGet {
   SeriesTimestampSleepGet? rmssd;
 
   SeriesSleepGet(
-      {this.state, this.hr, this.rr, this.snoring, this.sdnn1, this.rmssd});
+      {this.state, this.startdate, this.enddate, this.hr, this.rr, this.snoring, this.sdnn1, this.rmssd});
 
   SeriesSleepGet.fromJson(Map<String, dynamic> json) {
     state = json['state'];
+    startdate = json['startdate'];
+    enddate = json['enddate'];
     hr = json['hr'] != null
         ? SeriesTimestampSleepGet.fromJson(json['hr'])
         : null;
@@ -73,6 +81,8 @@ class SeriesSleepGet {
   String toString() {
     return (StringBuffer('SeriesSleepGet(')
           ..write('state: $state, ')
+          ..write('startdate: $startdate, ')
+          ..write('enddate: $enddate, ')
           ..write('hr: $hr, ')
           ..write('rr: $rr, ')
           ..write('snoring: $snoring, ')

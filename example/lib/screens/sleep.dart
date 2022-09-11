@@ -17,10 +17,11 @@ class Sleep extends StatelessWidget {
                 await WithingsSleepGetDataManager(accessToken: 'accessToken!')
                     .fetch(WithingsSleepAPIURL.get(
               accessToken: accessToken!,
-              startdate: 1662425635,
-              enddate: 1662458035,
-              dataFields: 'hr,rr,snoring,sdnn_1',
-            )) as WithingsSleepGetData; // */
+              startdate: 1662854063,
+              enddate: 1662900863,
+              dataFields: 'hr,rr,snoring,sdnn_1,rmssd',
+            )) as WithingsSleepGetData; //
+            print(getsleepdata);
           },
           child: Text('Get Sleep'),
         ),
@@ -31,14 +32,14 @@ class Sleep extends StatelessWidget {
           onPressed: () async {
             final getsummaryrangesleepdata =
                 await WithingsSleepGetSummaryDataManager(
-                            accessToken: accessToken!)
-                        .fetch(WithingsSleepAPIURL.getSummaryRange(
-                            accessToken: accessToken!,
-                            startdateymd: '2022-09-06',
-                            enddateymd: '2022-09-08',
-                            dataFields:
-                                'hr_average,hr_max,night_events,remsleepduration'))
-                    as WithingsSleepGetSummaryData; //Working */
+                        accessToken: accessToken!)
+                    .fetch(WithingsSleepAPIURL.getSummaryRange(
+              accessToken: accessToken!,
+              startdateymd: '2022-09-06',
+              enddateymd: '2022-09-10',
+              //dataFields:'hr_average,hr_max,night_events,remsleepduration', //necessary?
+            )) as WithingsSleepGetSummaryData; //Working
+            print(getsummaryrangesleepdata);
           },
           child: Text('GetSummaryRange Sleep'),
         ),
@@ -53,7 +54,8 @@ class Sleep extends StatelessWidget {
                     .fetch(WithingsSleepAPIURL.getSummaryLastupdate(
               accessToken: accessToken!,
               lastupdate: 1662422035,
-            )) as WithingsSleepGetSummaryData; //Working */
+            )) as WithingsSleepGetSummaryData; //Working
+            print(getsummarylastupdatesleepdata);
           },
           child: Text('GetSummaryUpdate Sleep'),
         ),
