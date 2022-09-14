@@ -93,7 +93,7 @@ class DataSleepGetSummary {
   int? rrAverage;
   int? rrMax;
   int? rrMin;
-  double? sleepEfficiency;
+  num? sleepEfficiency;
   int? sleepLatency;
   int? sleepScore;
   int? snoring;

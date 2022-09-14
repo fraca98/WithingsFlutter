@@ -41,5 +41,3 @@ abstract class WithingsDataManager {
     return ret;
   } //getResponse
 }
-
- //TODO: gestione no internet connection

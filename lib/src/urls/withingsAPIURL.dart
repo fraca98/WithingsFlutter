@@ -1,14 +1,11 @@
-/// [WithingsAPIURL] is the abstract class implementing the data model of a url of Withings APIs
-abstract class WithingsAPIURL {
-  /// The string representation of the url
-  String? url;
+import 'package:withings_flutter/src/urls/withingsNoHeadAPIURL.dart';
 
-  /// The data to be attached to the url
-  Map<String, dynamic>? data;
+/// [WithingsAPIURL] is the abstract class (extending [WithingsNoHeadAPIURL]) implementing the data model of a url of Withings APIs
+abstract class WithingsAPIURL extends WithingsNoHeadAPIURL{
 
   /// The authorization header of the url
   String? authorizationHeader;
 
   /// Default [WithingsAPIURL] constructor.
-  WithingsAPIURL({this.url, this.data, this.authorizationHeader});
+  WithingsAPIURL({this.authorizationHeader});
 }

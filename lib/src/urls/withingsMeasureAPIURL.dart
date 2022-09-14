@@ -2,7 +2,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsMeasureAPIURL] is a class that expresses multiple factory
 /// constructors to be used to generate Withings Web APIs urls to fetch
-/// [WithingsMeasureGetMeasData],[],[],[]
+/// [WithingsMeasureGetMeasData],[WithingsMeasureGetActivityData],[WithingsMeasureGetIntradayactivityData],[WithingsMeasureGetWorkoutsData]
 class WithingsMeasureAPIURL extends WithingsAPIURL {
   ///Default [WithingsMeasureAPIURL] constructor
   WithingsMeasureAPIURL(

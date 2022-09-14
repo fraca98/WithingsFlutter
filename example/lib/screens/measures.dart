@@ -81,6 +81,7 @@ class Measures extends StatelessWidget {
                 dataFields: 'heart_rate', // Gives only these value and not all in the response
                 accessToken: accessToken!,
               )) as WithingsMeasureGetIntradayactivityData; //Working
+              print(getintradayactivity);
             },
             child: Text('GetIntradayActivity')),
         ElevatedButton(
@@ -90,7 +91,7 @@ class Measures extends StatelessWidget {
                               accessToken: accessToken!)
                           .fetch(WithingsMeasureAPIURL.getWorkoutsRange(
                               startdateymd: '2022-09-09',
-                              enddateymd: '2022-09-09',
+                              enddateymd: '2022-09-14',
                               accessToken: accessToken!))
                       as WithingsMeasureGetWorkoutsData; //
               print(getworkoutrange);
