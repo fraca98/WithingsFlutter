@@ -17,7 +17,6 @@ class Settings extends StatelessWidget {
                     context: context,
                     clientID: Strings.withingsClientID,
                     clientSecret: Strings.withingsClientSecret,
-                    state: 'state',
                     scope: 'user.activity,user.metrics,user.sleepevents',
                     redirectUri: Strings.withingsRedirectUri,
                     callbackUrlScheme: Strings.withingsCallbackScheme);

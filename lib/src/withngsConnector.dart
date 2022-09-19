@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
@@ -17,7 +19,6 @@ class WithingsConnector {
     BuildContext? context,
     required String clientID,
     required String clientSecret,
-    required String state,
     required String scope,
     required String redirectUri,
     required String callbackUrlScheme,
@@ -25,6 +26,9 @@ class WithingsConnector {
     // Initialize tokens as null
     String? accessToken;
     String? refreshToken;
+
+    // Initialize state as random number: used to check if spoofed
+    String state = Random().nextInt(pow(2, 32).toInt()).toString();
 
     // Instantiate Dio and its Response
     Dio dio = Dio();
@@ -48,7 +52,11 @@ class WithingsConnector {
       final code = Uri.parse(result).queryParameters['code'];
 
       // Get the state (check if spoofed or not)
-      final retuned_state = Uri.parse(result).queryParameters['state'];
+      final returned_state = Uri.parse(result).queryParameters['state'];
+      if (returned_state != state) {
+        print('The connection has been spoofed!');
+        return [null, null];
+      }
 
       // Generate the Withings url to retrieve the accessToken and the refreshToken
       final withingsAuthorizeUrl = WithingsAuthAPIURL.authorize(
@@ -76,8 +84,6 @@ class WithingsConnector {
       print(e);
     } // catch
     return [accessToken, refreshToken]; //Return the tokens
-
-    // TO DO: check if spoofed state, error to show if authorization code is not granted, too much time to get tokens
   } // authorize
 
   /// Method that refreshes the Withings access token.
@@ -123,7 +129,6 @@ class WithingsConnector {
     }
 
     return [accessToken, refreshToken];
-    // TODO: manage errors about refresh code invalid, no internet
   } // refreshToken
 
 }
