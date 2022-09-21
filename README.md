@@ -13,15 +13,11 @@ and the Flutter guide for
 
 A Flutter package to make your life easier when dealing with Withings APIs.
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
 ## Getting started
 
 ### Step 1: Install Withings_flutter
 
-To install withings_flutter, simply add `withings_flutter: ` to the dependencies of your `pubspec.yaml` file: 
+To install Withings_flutter, simply add `withings_flutter: ` to the dependencies of your `pubspec.yaml` file: 
 
 ```yaml
 dependencies:
@@ -46,6 +42,19 @@ and change ```CALLBACK_SCHEME``` with your callback scheme (in the test example 
 ### Step 1b: (for Android only) Requirement: Web Browser
 
 Wthings_flutter uses `flutter_web_auth` to let you authenticate to Withings. In order to let it work correcty please be sure that your emulator or your physical device is using Chrome, Opera, or Firefox as default web browser. 
+
+### Step 2: Test Withings_flutter
+
+Once installed, it is time to test drive Withings_flutter. In this example, we will use Withings_flutter to authenticate our app into Withings APIs and  ... TODO . 
+
+#### Preliminary requirement: Register your app 
+
+To be able to perform any operation with the Withings APIs, you must register first your application in the [developer portal of Withings](https://developer.withings.com/dashboard/) and obtain two IDs, namely the "**Client ID**" and the "**Secret**". To do so, you have to follow these steps.
+
+* Create a Withings developer account, if you do not have one.
+* Register a new app at [https://developer.withings.com/dashboard/create](https://developer.withings.com/dashboard/create) and select `Withings Public Cloud`.
+  
+TODO
 
 ## Usage
 
