@@ -11,8 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter package to make your life easier when dealing with Withings APIs.
 
 ## Features
 
@@ -20,8 +19,33 @@ TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Step 1: Install Withings_flutter
+
+To install withings_flutter, simply add `withings_flutter: ` to the dependencies of your `pubspec.yaml` file: 
+
+```yaml
+dependencies:
+    withings_flutter: #latest version
+```
+### Step 1a: (for Android only) Modify you manifest
+
+Withings_flutter uses `flutter_web_auth` to let you authenticate to Withings. In Android, you need to add these lines of code to your `android/app/src/main/AndroidManifest.xml` file:
+```xml
+    <activity android:name="com.linusu.flutter_web_auth.CallbackActivity"
+        android:exported="true" >
+      <intent-filter android:label="flutter_web_auth">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="CALLBACK_SCHEME" />
+      </intent-filter>
+    </activity>
+```
+and change ```CALLBACK_SCHEME``` with your callback scheme (in the test example below this will be ```example```)
+
+### Step 1b: (for Android only) Requirement: Web Browser
+
+Wthings_flutter uses `flutter_web_auth` to let you authenticate to Withings. In order to let it work correcty please be sure that your emulator or your physical device is using Chrome, Opera, or Firefox as default web browser. 
 
 ## Usage
 
