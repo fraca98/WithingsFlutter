@@ -13,24 +13,24 @@ class Settings extends StatelessWidget {
         ElevatedButton(
               onPressed: () async {
                 // Authorize the app
-                List<String?> tokens = await WithingsConnector.authorize(
-                    context: context,
+                WithingsCredentials? withingsCredentials = await WithingsConnector.authorize(
                     clientID: Strings.withingsClientID,
                     clientSecret: Strings.withingsClientSecret,
                     scope: 'user.activity,user.metrics,user.sleepevents',
                     redirectUri: Strings.withingsRedirectUri,
                     callbackUrlScheme: Strings.withingsCallbackScheme);
-                print(tokens);
+                print(withingsCredentials);
               },
               child: Text('Tap to authorize'),
             ),
             ElevatedButton(
               onPressed: () async {
-                List<String?> refTokens = await WithingsConnector.refreshToken(
+                WithingsCredentials? newWithingsCredentials = await WithingsConnector.refreshToken(
                     clientID: Strings.withingsClientID,
                     clientSecret: Strings.withingsClientSecret,
-                    WithingsRefreshToken: '...');
-                print(refTokens);
+                    withingsCredentials: WithingsCredentials(userID: '...', withingsAccessToken: '...', withingsRefreshToken: '...'), //put here the WithingsCredentials object to refresh the token
+                    );
+                print(newWithingsCredentials);
               },
               child: Text('Refresh token'),
             ),

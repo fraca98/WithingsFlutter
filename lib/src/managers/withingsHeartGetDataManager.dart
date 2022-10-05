@@ -3,10 +3,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsHeartGetDataManager] is a class the manages the requests related to [WithingsSleepGetData]
 class WithingsHeartGetDataManager extends WithingsDataManager {
-  WithingsHeartGetDataManager({required String accessToken})
-      : super(
-          accessToken: accessToken,
-        );
+  WithingsHeartGetDataManager();
 
   @override
   Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {

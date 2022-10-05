@@ -4,7 +4,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 class Sleep extends StatelessWidget {
   Sleep({super.key});
 
-  String? accessToken = '';
+  String? accessToken = ''; //put here the accessToken from WithingsCredentials
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,8 @@ class Sleep extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () async {
-            final getsleepdata =
-                await WithingsSleepGetDataManager(accessToken: 'accessToken!')
-                    .fetch(WithingsSleepAPIURL.get(
+            final getsleepdata = await WithingsSleepGetDataManager()
+                .fetch(WithingsSleepAPIURL.get(
               accessToken: accessToken!,
               startdate: 1662854063,
               enddate: 1662900863,
@@ -31,8 +30,7 @@ class Sleep extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             final getsummaryrangesleepdata =
-                await WithingsSleepGetSummaryDataManager(
-                        accessToken: accessToken!)
+                await WithingsSleepGetSummaryDataManager()
                     .fetch(WithingsSleepAPIURL.getSummaryRange(
               accessToken: accessToken!,
               startdateymd: '2022-09-06',
@@ -49,8 +47,7 @@ class Sleep extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             final getsummarylastupdatesleepdata =
-                await WithingsSleepGetSummaryDataManager(
-                        accessToken: accessToken!)
+                await WithingsSleepGetSummaryDataManager()
                     .fetch(WithingsSleepAPIURL.getSummaryLastupdate(
               accessToken: accessToken!,
               lastupdate: 1662422035,

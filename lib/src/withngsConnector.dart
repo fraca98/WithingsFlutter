@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
@@ -12,21 +11,46 @@ import 'package:withings_flutter/src/urls/withingsAuthAPIURL.dart';
 /// [WithingsConnector.authorize] for more details), refresh the access token (see
 /// [WithingsConnector.refreshToken] for more details)
 
+/// [WithingsCredentials] is a class that is in charge of managing the credentials to be used
+/// to make requests to the Withings Web APIs: [userID], [withingsAccessToken], and [withingsRefreshToken].
+class WithingsCredentials {
+  /// The user id associated to the credentials.
+  String userID;
+
+  /// The Fitbit access token associated to the credentials.
+  String withingsAccessToken;
+
+  /// The Fitbit refresh token associated to the credentials.
+  String withingsRefreshToken;
+
+  /// Default constructor of [WithingsCredentials].
+  WithingsCredentials({
+    required this.userID,
+    required this.withingsAccessToken,
+    required this.withingsRefreshToken,
+  });
+
+  @override
+  String toString() {
+    return (StringBuffer('WithingsCredentials(')
+          ..write('userID: $userID, ')
+          ..write('withingsAccessToken: $withingsAccessToken, ')
+          ..write('withingsRefreshToken: $withingsRefreshToken')
+          ..write(')'))
+        .toString();
+  } // toString
+}
+
 class WithingsConnector {
   /// Method that implements the OAuth 2.0 protocol and returns the
   /// access and refresh tokens from Withings APIs.
-  static Future<List<String?>> authorize({
-    BuildContext? context,
+  static Future<WithingsCredentials?> authorize({
     required String clientID,
     required String clientSecret,
     required String scope,
     required String redirectUri,
     required String callbackUrlScheme,
   }) async {
-    // Initialize tokens as null
-    String? accessToken;
-    String? refreshToken;
-
     // Initialize state as random number: used to check if spoofed
     String state = Random().nextInt(pow(2, 32).toInt()).toString();
 
@@ -42,6 +66,9 @@ class WithingsConnector {
       redirectUri: redirectUri,
     );
 
+    // instanciate object of WithingsCredentials
+    WithingsCredentials? withingsCredentials;
+
     // Perform authentication
     try {
       final result = await FlutterWebAuth.authenticate(
@@ -55,7 +82,7 @@ class WithingsConnector {
       final returned_state = Uri.parse(result).queryParameters['state'];
       if (returned_state != state) {
         print('The connection has been spoofed!');
-        return [null, null];
+        return withingsCredentials;
       }
 
       // Generate the Withings url to retrieve the accessToken and the refreshToken
@@ -77,25 +104,27 @@ class WithingsConnector {
       final logger = Logger();
       logger.i('$response');
 
-      // Show the tokens
-      accessToken = response.data['body']['access_token'] as String;
-      refreshToken = response.data['body']['refresh_token'] as String;
+      // Get userId and tokens
+      final userID = response.data['body']['userid'] as String;
+      final accessToken = response.data['body']['access_token'] as String;
+      final refreshToken = response.data['body']['refresh_token'] as String;
+
+      withingsCredentials = WithingsCredentials(
+          userID: userID,
+          withingsAccessToken: accessToken,
+          withingsRefreshToken: refreshToken);
     } catch (e) {
-      print(e);
+      //print(e);
     } // catch
-    return [accessToken, refreshToken]; //Return the tokens
+    return withingsCredentials;
   } // authorize
 
   /// Method that refreshes the Withings access token.
-  static Future<List<String?>> refreshToken({
+  static Future<WithingsCredentials?> refreshToken({
     required String clientID,
     required String clientSecret,
-    required String WithingsRefreshToken,
+    required WithingsCredentials withingsCredentials,
   }) async {
-    // Initialize tokens as null
-    String? accessToken;
-    String? refreshToken;
-
     // Instantiate Dio and its Response
     Dio dio = Dio();
     Response response;
@@ -104,8 +133,11 @@ class WithingsConnector {
     final withingRefreshUrl = WithingsAuthAPIURL.refreshToken(
       clientID: clientID,
       clientSecret: clientSecret,
-      refreshToken: WithingsRefreshToken,
+      refreshToken: withingsCredentials.withingsRefreshToken,
     );
+
+    //new WithingsCredentials instantiate
+    WithingsCredentials? newWithingsCredentials;
 
     try {
       // Post refresh query to Withings API
@@ -121,14 +153,19 @@ class WithingsConnector {
       final logger = Logger();
       logger.i('$response');
 
-      // Display the new tokens
-      accessToken = response.data['body']['access_token'] as String;
-      refreshToken = response.data['body']['refresh_token'] as String;
+      // Overwrite the new tokens
+      final userID = response.data['body']['userid']; //here userID in refresh is given back as int
+      final accessToken = response.data['body']['access_token'] as String;
+      final refreshToken = response.data['body']['refresh_token'] as String;
+
+      newWithingsCredentials = WithingsCredentials(
+          userID: userID.toString(),
+          withingsAccessToken: accessToken,
+          withingsRefreshToken: refreshToken);
     } catch (e) {
       //print(e);
     }
-
-    return [accessToken, refreshToken];
+    return newWithingsCredentials;
   } // refreshToken
 
 }

@@ -3,8 +3,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsHeartListDataManager] is a class the manages the requests related to [WithingsHeartListData]
 class WithingsHeartListDataManager extends WithingsDataManager {
-  WithingsHeartListDataManager({required String accessToken})
-      : super(accessToken: accessToken);
+  WithingsHeartListDataManager();
 
   @override
   Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {

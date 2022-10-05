@@ -3,10 +3,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsSleepGetSummaryDataManager] is a class the manages the requests related to [WithingsSleepGetSummaryData]
 class WithingsSleepGetSummaryDataManager extends WithingsDataManager {
-  WithingsSleepGetSummaryDataManager({required String accessToken})
-      : super(
-          accessToken: accessToken,
-        );
+  WithingsSleepGetSummaryDataManager();
 
   @override
   Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {

@@ -3,10 +3,7 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsMeasureGetActivityDataManager] is a class the manages the requests related to [WithingsMeasureGetActivityData]
 class WithingsMeasureGetActivityDataManager extends WithingsDataManager {
-  WithingsMeasureGetActivityDataManager({required String accessToken})
-      : super(
-          accessToken: accessToken,
-        );
+  WithingsMeasureGetActivityDataManager();
 
   @override
   Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {

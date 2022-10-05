@@ -13,9 +13,9 @@ and the Flutter guide for
 
 A Flutter package to make your life easier when dealing with Withings APIs.
 
-## Getting started
+# Getting started 
 
-### Step 1: Install WithingsFlutter
+## Step 1: Install WithingsFlutter
 
 To install WithingsFlutter, simply add `withings_flutter: ` to the dependencies of your `pubspec.yaml` file: 
 
@@ -23,7 +23,8 @@ To install WithingsFlutter, simply add `withings_flutter: ` to the dependencies 
 dependencies:
     withings_flutter: #latest version
 ```
-### Step 1a: (for Android only) Modify you manifest
+
+### (for Android only) Modify you manifest
 
 WithingsFlutter uses `flutter_web_auth` to let you authenticate to Withings. In Android, you need to add these lines of code to your `android/app/src/main/AndroidManifest.xml` file:
 ```xml
@@ -39,34 +40,105 @@ WithingsFlutter uses `flutter_web_auth` to let you authenticate to Withings. In 
 ```
 and change ```CALLBACK_SCHEME``` with your callback scheme (in the test example below this will be ```example```)
 
-### Step 1b: (for Android only) Requirement: Web Browser
+### (for Android only) Requirement: Web Browser
 
-WthingsFlutter uses `flutter_web_auth` to let you authenticate to Withings. In order to let it work correcty please be sure that your emulator or your physical device is using Chrome, Opera, or Firefox as default web browser. 
+WithingsFlutter uses `flutter_web_auth` to let you authenticate to Withings. In order to let it work correcty please be sure that your emulator or your physical device is using Chrome, Opera, or Firefox as default web browser. 
 
-### Step 2: Test WithingsFlutter
+### (for Web only) Requirement: Create an endpoint
 
-Once installed, it is time to test drive WithingsFlutter. In this example, we will use WithingsFlutter to authenticate our app into Withings APIs and  ... TODO . 
+WithingsFlutter uses `flutter_web_auth` to let you authenticate to Withings. In order to let it work correcty, as indicated in [https://pub.dev/packages/flutter_web_auth](https://pub.dev/packages/flutter_web_auth), on the Web platform an endpoint needs to be created that captures the callback URL and sends it to the application using the JavaScript `postMessage()` method. In the `./web` folder of the project, create an HTML file with the name e.g. `auth.html` with content:
+```html
+<!DOCTYPE html>
+<title>Authentication complete</title>
+<p>Authentication is complete. If this does not happen automatically, please
+close the window.
+<script>
+  window.opener.postMessage({
+    'flutter-web-auth': window.location.href
+  }, window.location.origin);
+  window.close();
+</script>
+```
+Redirection URL passed to the authentication service must be the same as the URL on which the application is running (schema, host, port if necessary) and the path must point to created HTML file, `/auth.html`in this case. The `callbackUrlScheme` parameter of the `authenticate()` method does not take into account, so it is possible to use a schema for native platforms in the code.
 
-#### Preliminary requirement: Register your app 
+For the Sign in with Apple in web_message response mode, postMessage from [https://appleid.apple.com](https://appleid.apple.com) is also captured, and the authorization object is returned as a URL fragment encoded as a query string (for compatibility with other providers).
 
-To be able to perform any operation with the Withings APIs, you must register first your application in the [developer portal of Withings](https://developer.withings.com/dashboard/) and obtain two IDs, namely the "**Client ID**" and the "**Secret**". To do so, you have to follow these steps.
+## Step 2: Test WithingsFlutter
 
-* Create a Withings developer account, if you do not have one.
-* Register a new app at [https://developer.withings.com/dashboard/create](https://developer.withings.com/dashboard/create).
+Once installed, it is time to test drive WithingsFlutter. In this example, we will use WithingsFlutter to authenticate our app into Withings APIs and simply fetch a list of ECG records and Afib classification for a given period of time.
+ 
+
+### Preliminary requirement: Register your app 
+
+To be able to perform any operation with the Withings APIs, you must register first your application in the developer portal of Withings and obtain two IDs, namely the "**Client ID**" and the "**(Client) Secret**". To do so, you have to follow these steps. 
+
+* Choose the environment on which your applications will be running at [https://developer.withings.com/dashboard/welcome](https://developer.withings.com/dashboard/welcome).
+![Withings environment selection](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/environment.png)
+
+* Then proceed to create a Withings account, if you do not have one, or login.
+
+* Register a new app at [https://developer.withings.com/dashboard/create](https://developer.withings.com/dashboard/create), pressing on the button "**+ Create an application**".
+
+![Withings create an application](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/create.png)
   
-TODO
+* Select the plane of integration and then accept the terms and conditions.
 
-## Usage
+![Withings applicationcreation](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/applicationcreation.png)
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+* Then the following form will appear
+
+![Withings information](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/information.png)
+
+* Set the **Application name**
+* Set a brief **Application Description** (e.g., "Just a simple test of an awesome package.")
+* Set the **Registered URLs** to set the **Callback URLs** (e.g., "example://withings/auth").
+* Upload, if you want, your **Project Logo**.
+* Press on **Done** button
+* In the following page, copy and save the values of the "**Client ID**" and the "**(Client) Secret**" provided by Withings for your app.
+* Press on the **Confirm** button and you will see a summary of the info related to your registered app, as:
+  * **ClientID**
+  * **(Client) Secret**
+  * **Callback URL**
+  * **API Endpoint**
+
+
+### App authentication 
+
+You are now ready to authorize your application.
+
+To do that, simply call the asynchronous method `WithingsConnector.authorize()`, within your code, as: 
 
 ```dart
-const like = 'sample';
+    WithingsCredentials? withingsCredentials = await WithingsConnector.authorize(
+                    clientID: Strings.withingsClientID,
+                    clientSecret: Strings.withingsClientSecret,
+                    scope: 'user.activity,user.metrics,user.sleepevents',
+                    redirectUri: Strings.withingsRedirectUri,
+                    callbackUrlScheme: Strings.withingsCallbackScheme);
 ```
 
-## Additional information
+This will open a web view where user will be able to input his Withings credentials and login.
+After the login, the web view will close and the method will return a `WithingsCredentials?` instance that contains the credentials to be used to make requests to the Withings Web API via `withings_flutter`. In particular, `withingsCredentials.userID` contains the Withings user id of the user that just authorized `withings_flutter`, `withingsCredentials.withingsAccessToken` contains the Withings access token, and `withingsCredentials.withingsRefreshToken` contains the Withings refresh token.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+> :warning: The credentials are not stored automatically somewhere in a persistent way. You must manage such crendentials according to your strategy.
+
+### Fetch a list of ECG records and Afib classification for a given period of time
+
+With your app authorized, you are now ready to fetch data from Withings. In this example, we will [fetch a list of ECG records and Afib classification for a given period of time](https://developer.withings.com/api-reference/#operation/heartv2-list).
+
+Using WithingsFlutter, this is very easy. First instanciate a `WithingsHeartListDataManager` :
+
+```dart
+    WithingsHeartListDataManager withingsHeartListDataManager =
+        WithingsHeartListDataManager();
+```
+
+Then fetch the desired data using the `fetch` method of `WithingsHeartListDataManager` with the proper `WithingsHeartAPIURL`:
+
+```dart
+    final listheartdata = await withingsHeartListDataManager
+            .fetch(WithingsHeartAPIURL.list(accessToken: withingsCredentials.accessToken))
+        as WithingsHeartListData;
+```
+
+That's it! 

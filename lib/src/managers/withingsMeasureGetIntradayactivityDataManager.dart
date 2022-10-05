@@ -4,11 +4,8 @@ import 'package:withings_flutter/withings_flutter.dart';
 /// [WithingsMeasureGetIntradayactivityDataManager] is a class the manages the requests related to [WithingsMeasureGetintradayactivityData]
 class WithingsMeasureGetIntradayactivityDataManager
     extends WithingsDataManager {
-  WithingsMeasureGetIntradayactivityDataManager({required String accessToken})
-      : super(
-          accessToken: accessToken,
-        );
-
+  WithingsMeasureGetIntradayactivityDataManager();
+  
   @override
   Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {
     // Get the response
