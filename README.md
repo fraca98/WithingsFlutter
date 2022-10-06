@@ -116,6 +116,12 @@ To do that, simply call the asynchronous method `WithingsConnector.authorize()`,
                     redirectUri: Strings.withingsRedirectUri,
                     callbackUrlScheme: Strings.withingsCallbackScheme);
 ```
+and set in:
+* clientID: the clientID obtained before
+* clientSecret: the (Client) Secret obtained before
+* scopes: a comma-separated list (of `Strings`) of permission scopes you want to ask your user
+* redirectUri: the Callback URL obtained before, in our example `'example://withings/auth'`
+* callbackUrlScheme: the callbackUrlScheme, in our example `'example'`
 
 This will open a web view where user will be able to input his Withings credentials and login.
 After the login, the web view will close and the method will return a `WithingsCredentials?` instance that contains the credentials to be used to make requests to the Withings Web API via `withings_flutter`. In particular, `withingsCredentials.userID` contains the Withings user id of the user that just authorized `withings_flutter`, `withingsCredentials.withingsAccessToken` contains the Withings access token, and `withingsCredentials.withingsRefreshToken` contains the Withings refresh token.
