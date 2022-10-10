@@ -6,7 +6,7 @@ class WithingsSleepGetDataManager extends WithingsDataManager {
   WithingsSleepGetDataManager();
 
   @override
-  Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsSleepGetData> fetch(WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -15,7 +15,7 @@ class WithingsSleepGetDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsData ret = _extractWithingsSleepGetData(response);
+    WithingsSleepGetData ret = _extractWithingsSleepGetData(response);
     return ret;
   } // fetch
 

@@ -6,7 +6,7 @@ class WithingsHeartListDataManager extends WithingsDataManager {
   WithingsHeartListDataManager();
 
   @override
-  Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsHeartListData> fetch(WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -15,7 +15,7 @@ class WithingsHeartListDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsData ret = _extractWithingsHeartListData(response);
+    WithingsHeartListData ret = _extractWithingsHeartListData(response);
     return ret;
   } // fetch
 

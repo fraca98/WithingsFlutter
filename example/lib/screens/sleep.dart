@@ -13,13 +13,16 @@ class Sleep extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () async {
-            final getsleepdata = await WithingsSleepGetDataManager()
-                .fetch(WithingsSleepAPIURL.get(
-              accessToken: accessToken!,
-              startdate: 1662854063,
-              enddate: 1662900863,
-              dataFields: 'hr,rr,snoring,sdnn_1,rmssd',
-            )) as WithingsSleepGetData; //
+            WithingsSleepGetDataManager withingsSleepGetDataManager =
+                WithingsSleepGetDataManager();
+            WithingsSleepAPIURL withingsSleepAPIURLGet =
+                WithingsSleepAPIURL.get(
+                    startdate: 1662854063,
+                    enddate: 1662900863,
+                    dataFields: 'hr,rr,snoring,sdnn_1,rmssd',
+                    accessToken: accessToken!);
+            WithingsSleepGetData getsleepdata =
+                await withingsSleepGetDataManager.fetch(withingsSleepAPIURLGet);
             print(getsleepdata);
           },
           child: Text('Get Sleep'),
@@ -29,14 +32,20 @@ class Sleep extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () async {
-            final getsummaryrangesleepdata =
-                await WithingsSleepGetSummaryDataManager()
-                    .fetch(WithingsSleepAPIURL.getSummaryRange(
+            WithingsSleepGetSummaryDataManager
+                withingsSleepGetSummaryDataManager =
+                WithingsSleepGetSummaryDataManager();
+            WithingsSleepAPIURL withingsSleepAPIURLGetSummaryRange =
+                WithingsSleepAPIURL.getSummaryRange(
+              offset: 2,
               accessToken: accessToken!,
               startdateymd: '2022-09-06',
               enddateymd: '2022-09-10',
               //dataFields:'hr_average,hr_max,night_events,remsleepduration', //necessary?
-            )) as WithingsSleepGetSummaryData; //Working
+            );
+            WithingsSleepGetSummaryData getsummaryrangesleepdata =
+                await withingsSleepGetSummaryDataManager
+                    .fetch(withingsSleepAPIURLGetSummaryRange); //Working
             print(getsummaryrangesleepdata);
           },
           child: Text('GetSummaryRange Sleep'),
@@ -46,12 +55,18 @@ class Sleep extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () async {
-            final getsummarylastupdatesleepdata =
-                await WithingsSleepGetSummaryDataManager()
-                    .fetch(WithingsSleepAPIURL.getSummaryLastupdate(
-              accessToken: accessToken!,
+            WithingsSleepGetSummaryDataManager
+                withingsSleepGetSummaryDataManager =
+                WithingsSleepGetSummaryDataManager();
+            WithingsSleepAPIURL withingsSleepAPIURLGetSummaryLastUpdate =
+                WithingsSleepAPIURL.getSummaryLastupdate(
               lastupdate: 1662422035,
-            )) as WithingsSleepGetSummaryData; //Working
+              accessToken: accessToken!,
+              //dataFields:'hr_average,hr_max,night_events,remsleepduration', //necessary?
+            ); //Working
+            WithingsSleepGetSummaryData getsummarylastupdatesleepdata =
+                await withingsSleepGetSummaryDataManager
+                    .fetch(withingsSleepAPIURLGetSummaryLastUpdate); //Working
             print(getsummarylastupdatesleepdata);
           },
           child: Text('GetSummaryUpdate Sleep'),

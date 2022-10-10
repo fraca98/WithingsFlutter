@@ -41,6 +41,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
     required String startdateymd,
     required String enddateymd,
     String? dataFields,
+    int? offset,
     required String accessToken,
   }) {
     return WithingsSleepAPIURL(
@@ -49,6 +50,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
         'action': 'getsummary',
         'startdateymd': startdateymd,
         'enddateymd': enddateymd,
+        'offset': offset,
       },
       authorizationHeader: 'Bearer $accessToken',
     );
@@ -60,6 +62,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
   factory WithingsSleepAPIURL.getSummaryLastupdate({
     required int lastupdate,
     String? dataFields,
+    int? offset,
     required String accessToken,
   }) {
     return WithingsSleepAPIURL(
@@ -68,6 +71,7 @@ class WithingsSleepAPIURL extends WithingsAPIURL {
         'action': 'getsummary',
         'lastupdate': lastupdate,
         'data_fields': dataFields,
+        'offset': offset,
       },
       authorizationHeader: 'Bearer $accessToken',
     );

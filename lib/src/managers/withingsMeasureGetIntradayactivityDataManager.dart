@@ -7,7 +7,7 @@ class WithingsMeasureGetIntradayactivityDataManager
   WithingsMeasureGetIntradayactivityDataManager();
   
   @override
-  Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsMeasureGetIntradayactivityData> fetch(WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -16,7 +16,7 @@ class WithingsMeasureGetIntradayactivityDataManager
     logger.i('$response');
 
     //Extract data and return them
-    WithingsData ret =
+    WithingsMeasureGetIntradayactivityData ret =
         _extractWithingsMeasureGetaintradayactivityData(response);
     return ret;
   } // fetch

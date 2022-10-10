@@ -2,7 +2,7 @@ import 'package:withings_flutter/src/data/withingsData.dart';
 
 /// [WithingsSleepGetData] is a class that returns sleep data captured at high frequency, including sleep stages
 class WithingsSleepGetData implements WithingsData {
-  /// Series SeriesSleepGet
+  /// Array of objects SeriesSleepGet
   List<SeriesSleepGet>? series;
 
   /// Default [WithingsSleepGetData] constructor

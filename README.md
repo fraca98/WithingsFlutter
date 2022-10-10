@@ -109,12 +109,12 @@ You are now ready to authorize your application.
 To do that, simply call the asynchronous method `WithingsConnector.authorize()`, within your code, as: 
 
 ```dart
-    WithingsCredentials? withingsCredentials = await WithingsConnector.authorize(
-                    clientID: Strings.withingsClientID,
-                    clientSecret: Strings.withingsClientSecret,
-                    scope: 'user.activity,user.metrics,user.sleepevents',
-                    redirectUri: Strings.withingsRedirectUri,
-                    callbackUrlScheme: Strings.withingsCallbackScheme);
+WithingsCredentials? withingsCredentials = await WithingsConnector.authorize(
+                clientID: Strings.withingsClientID,
+                clientSecret: Strings.withingsClientSecret,
+                scope: 'user.activity,user.metrics,user.sleepevents',
+                redirectUri: Strings.withingsRedirectUri,
+                callbackUrlScheme: Strings.withingsCallbackScheme);
 ```
 and set in:
 * clientID: the clientID obtained before
@@ -135,16 +135,15 @@ With your app authorized, you are now ready to fetch data from Withings. In this
 Using WithingsFlutter, this is very easy. First instanciate a `WithingsHeartListDataManager` :
 
 ```dart
-    WithingsHeartListDataManager withingsHeartListDataManager =
-        WithingsHeartListDataManager();
+WithingsHeartListDataManager withingsHeartListDataManager =
+    WithingsHeartListDataManager();
 ```
 
 Then fetch the desired data using the `fetch` method of `WithingsHeartListDataManager` with the proper `WithingsHeartAPIURL`:
 
 ```dart
-    final listheartdata = await withingsHeartListDataManager
-            .fetch(WithingsHeartAPIURL.list(accessToken: withingsCredentials.accessToken))
-        as WithingsHeartListData;
+WithingsHeartListData listheartdata = await withingsHeartListDataManager
+        .fetch(WithingsHeartAPIURL.list(accessToken: withingsCredentials.accessToken));
 ```
 
 That's it! 

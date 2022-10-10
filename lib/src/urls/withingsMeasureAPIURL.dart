@@ -22,7 +22,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     int? category,
     required int startdate,
     required int enddate,
-    int? offset,
+    //int? offset, //present in the documentation of the API, but not the field offset in the response, so removed
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
@@ -33,7 +33,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
         'category': category,
         'startdate': startdate,
         'enddate': enddate,
-        'offset': offset,
+        //'offset': offset,
       },
       authorizationHeader: 'Bearer $accessToken',
     );
@@ -47,7 +47,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
     String? meastypes,
     int? category,
     required int lastupdate,
-    int? offset,
+    //int? offset, //present in the documentation of the API, but not the field offset in the response, so removed
     required String accessToken,
   }) {
     return WithingsMeasureAPIURL(
@@ -57,7 +57,7 @@ class WithingsMeasureAPIURL extends WithingsAPIURL {
         'meastypes': meastypes,
         'category': category,
         'lastupdate': lastupdate,
-        'offset': offset,
+        //'offset': offset,
       },
       authorizationHeader: 'Bearer $accessToken',
     );

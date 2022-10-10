@@ -9,7 +9,7 @@ class WithingsSleepGetSummaryData implements WithingsData {
   /// Array of SeriesSleepGetSummary objects
   List<SeriesSleepGetSummary>? series;
 
-  /// To know if there is more data to fetch or not
+  /// To know if there are more data to fetch or not
   bool? more;
 
   /// Offset to use to retrieve the next data

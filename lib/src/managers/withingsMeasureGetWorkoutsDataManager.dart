@@ -6,7 +6,7 @@ class WithingsMeasureGetWorkoutsDataManager extends WithingsDataManager {
   WithingsMeasureGetWorkoutsDataManager();
 
   @override
-  Future<WithingsData> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsMeasureGetWorkoutsData> fetch(WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -15,7 +15,7 @@ class WithingsMeasureGetWorkoutsDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsData ret = _extractWithingsMeasureGetWorkoutsData(response);
+    WithingsMeasureGetWorkoutsData ret = _extractWithingsMeasureGetWorkoutsData(response);
     return ret;
   } // fetch
 
