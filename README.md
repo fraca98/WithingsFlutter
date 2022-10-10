@@ -73,21 +73,21 @@ Once installed, it is time to test drive WithingsFlutter. In this example, we wi
 To be able to perform any operation with the Withings APIs, you must register first your application in the developer portal of Withings and obtain two IDs, namely the "**Client ID**" and the "**(Client) Secret**". To do so, you have to follow these steps. 
 
 * Choose the environment on which your applications will be running at [https://developer.withings.com/dashboard/welcome](https://developer.withings.com/dashboard/welcome).
-![Withings environment selection](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/environment.png)
+![Withings environment selection](https://raw.githubusercontent.com/fraca98/WithingsFlutter/gh-pages/environment.png)
 
 * Then proceed to create a Withings account, if you do not have one, or login.
 
 * Register a new app at [https://developer.withings.com/dashboard/create](https://developer.withings.com/dashboard/create), pressing on the button "**+ Create an application**".
 
-![Withings create an application](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/create.png)
+![Withings create an application](https://raw.githubusercontent.com/fraca98/WithingsFlutter/gh-pages/create.png)
   
 * Select the plane of integration and then accept the terms and conditions.
 
-![Withings applicationcreation](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/applicationcreation.png)
+![Withings applicationcreation](https://raw.githubusercontent.com/fraca98/WithingsFlutter/gh-pages/applicationcreation.png)
 
 * Then the following form will appear
 
-![Withings information](https://raw.githubusercontent.com/fraca98/WithingsFlutter.io/master/docs/src/.vuepress/public/information.png)
+![Withings information](https://raw.githubusercontent.com/fraca98/WithingsFlutter/gh-pages/information.png)
 
 * Set the **Application name**
 * Set a brief **Application Description** (e.g., "Just a simple test of an awesome package.")
@@ -146,4 +146,10 @@ WithingsHeartListData listheartdata = await withingsHeartListDataManager
         .fetch(WithingsHeartAPIURL.list(accessToken: withingsCredentials.accessToken));
 ```
 
-That's it! 
+That's it!
+
+# Documentation & Guides
+For more docs and guides please refer to [https://fraca98.github.io/WithingsFlutter/](https://fraca98.github.io/WithingsFlutter/)
+
+# Support
+Feel free to support my job :smile:
