@@ -4,6 +4,9 @@ import 'package:withings_flutter/src/data/withingsData.dart';
 
 /// [WithingsMeasureGetMeasData] is a class that provides measures stored at a specific date
 class WithingsMeasureGetMeasData implements WithingsData {
+  /// Response status
+  int? status;
+
   /// Array of measure group
   List<Measuregrps>? measuregrps;
 
@@ -15,12 +18,14 @@ class WithingsMeasureGetMeasData implements WithingsData {
 
   /// Default [WithingsMeasureGetMeasData] constructor
   WithingsMeasureGetMeasData({
+    this.status,
     this.measuregrps,
     //this.more,
     //this.offset
   });
 
   WithingsMeasureGetMeasData.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
     if (json['status'] == 0 && json['body'] != null) {
       if (json['body']['measuregrps'].isNotEmpty) {
         measuregrps = <Measuregrps>[];
@@ -36,6 +41,7 @@ class WithingsMeasureGetMeasData implements WithingsData {
   @override
   String toString() {
     return (StringBuffer('WithingsMeasureGetMeasData(')
+          ..write('status: $status, ')
           ..write('measuregrps: $measuregrps, ')
           //..write('more: $more, ')
           //..write('offset: $offset, ')

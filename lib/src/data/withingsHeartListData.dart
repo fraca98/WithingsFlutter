@@ -2,6 +2,9 @@ import 'package:withings_flutter/withings_flutter.dart';
 
 /// [WithingsHeartListData] is a class that returns a list of ECG records and Afib classification for a given period of time
 class WithingsHeartListData implements WithingsData {
+  /// Response status
+  int? status;
+
   /// Array of objects
   List<SeriesHeartList>? series;
 
@@ -12,9 +15,10 @@ class WithingsHeartListData implements WithingsData {
   int? offset;
 
   /// Default [WithingsHeartListData] constructor
-  WithingsHeartListData({this.series, this.more, this.offset});
+  WithingsHeartListData({this.status, this.series, this.more, this.offset});
 
   WithingsHeartListData.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
     if (json['status'] == 0 && json['body'] != null) {
       if (json['body']['series'].isNotEmpty) {
         series = <SeriesHeartList>[];
@@ -32,6 +36,7 @@ class WithingsHeartListData implements WithingsData {
   @override
   String toString() {
     return (StringBuffer('WithingsHeartListData(')
+          ..write('status: $status, ')
           ..write('series: $series, ')
           ..write('more: $more, ')
           ..write('offset: $offset, ')

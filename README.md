@@ -124,7 +124,7 @@ and set in:
 * callbackUrlScheme: the callbackUrlScheme, in our example `'example'`
 
 This will open a web view where user will be able to input his Withings credentials and login.
-After the login, the web view will close and the method will return a `WithingsCredentials?` instance that contains the credentials to be used to make requests to the Withings Web API via `withings_flutter`. In particular, `withingsCredentials.userID` contains the Withings user id of the user that just authorized `withings_flutter`, `withingsCredentials.withingsAccessToken` contains the Withings access token, and `withingsCredentials.withingsRefreshToken` contains the Withings refresh token.
+After the login, the web view will close and the method will return a `WithingsCredentials?` instance that contains the credentials to be used to make requests to the Withings Web API via `withings_flutter`. In particular, `withingsCredentials.userID` contains the Withings user id of the user that just authorized `withings_flutter`, `withingsCredentials.withingsAccessToken` contains the Withings access token, `withingsCredentials.withingsRefreshToken` contains the Withings refresh token and `withingsCredentials.expires` defines the access token expiry delay in seconds.
 
 > :warning: The credentials are not stored automatically somewhere in a persistent way. You must manage such crendentials according to your strategy.
 

@@ -17,17 +17,21 @@ class WithingsCredentials {
   /// The user id associated to the credentials.
   String userID;
 
-  /// The Fitbit access token associated to the credentials.
+  /// The Withings access token associated to the credentials.
   String withingsAccessToken;
 
-  /// The Fitbit refresh token associated to the credentials.
+  /// The Withings refresh token associated to the credentials.
   String withingsRefreshToken;
+
+  /// Time for the access token to expire
+  int expires;
 
   /// Default constructor of [WithingsCredentials].
   WithingsCredentials({
     required this.userID,
     required this.withingsAccessToken,
     required this.withingsRefreshToken,
+    required this.expires,
   });
 
   @override
@@ -35,7 +39,8 @@ class WithingsCredentials {
     return (StringBuffer('WithingsCredentials(')
           ..write('userID: $userID, ')
           ..write('withingsAccessToken: $withingsAccessToken, ')
-          ..write('withingsRefreshToken: $withingsRefreshToken')
+          ..write('withingsRefreshToken: $withingsRefreshToken, ')
+          ..write('expires: $expires')
           ..write(')'))
         .toString();
   } // toString
@@ -108,11 +113,14 @@ class WithingsConnector {
       final userID = response.data['body']['userid'] as String;
       final accessToken = response.data['body']['access_token'] as String;
       final refreshToken = response.data['body']['refresh_token'] as String;
+      final expiresin = response.data['body']
+          ['expires_in']; //time to expire for accessToken in seconds
 
       withingsCredentials = WithingsCredentials(
           userID: userID,
           withingsAccessToken: accessToken,
-          withingsRefreshToken: refreshToken);
+          withingsRefreshToken: refreshToken,
+          expires: expiresin);
     } catch (e) {
       //print(e);
     } // catch
@@ -123,7 +131,7 @@ class WithingsConnector {
   static Future<WithingsCredentials?> refreshToken({
     required String clientID,
     required String clientSecret,
-    required WithingsCredentials withingsCredentials,
+    required String withingsRefreshToken,
   }) async {
     // Instantiate Dio and its Response
     Dio dio = Dio();
@@ -133,7 +141,7 @@ class WithingsConnector {
     final withingRefreshUrl = WithingsAuthAPIURL.refreshToken(
       clientID: clientID,
       clientSecret: clientSecret,
-      refreshToken: withingsCredentials.withingsRefreshToken,
+      refreshToken: withingsRefreshToken,
     );
 
     //new WithingsCredentials instantiate
@@ -154,14 +162,18 @@ class WithingsConnector {
       logger.i('$response');
 
       // Overwrite the new tokens
-      final userID = response.data['body']['userid']; //here userID in refresh is given back as int
+      final userID = response.data['body']
+          ['userid']; //here userID in refresh is given back as int
       final accessToken = response.data['body']['access_token'] as String;
       final refreshToken = response.data['body']['refresh_token'] as String;
+      final expiresin = response.data['body']
+          ['expires_in']; //time to expire for accessToken in seconds
 
       newWithingsCredentials = WithingsCredentials(
           userID: userID.toString(),
           withingsAccessToken: accessToken,
-          withingsRefreshToken: refreshToken);
+          withingsRefreshToken: refreshToken,
+          expires: expiresin);
     } catch (e) {
       //print(e);
     }

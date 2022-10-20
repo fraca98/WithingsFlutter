@@ -58,11 +58,7 @@ class WithingsSleepGetSummaryDataManager extends WithingsDataManager {
   /// A private method that extracts [WithingsSleepGetSummaryData] from the given response.
   WithingsSleepGetSummaryData _extractWithingsSleepGetSummaryData(
       dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsSleepGetSummaryData.fromJson(response);
-    } else {
-      return WithingsSleepGetSummaryData();
-    }
+    return WithingsSleepGetSummaryData.fromJson(response);
   } // _extractWithingsSleepGetSummaryData
 } // WithingsSleepGetSummaryDataManager
 

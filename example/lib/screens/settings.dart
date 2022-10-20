@@ -11,29 +11,31 @@ class Settings extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-              onPressed: () async {
-                // Authorize the app
-                WithingsCredentials? withingsCredentials = await WithingsConnector.authorize(
+          onPressed: () async {
+            // Authorize the app
+            WithingsCredentials? withingsCredentials =
+                await WithingsConnector.authorize(
                     clientID: Strings.withingsClientID,
                     clientSecret: Strings.withingsClientSecret,
                     scope: 'user.activity,user.metrics,user.sleepevents',
                     redirectUri: Strings.withingsRedirectUri,
                     callbackUrlScheme: Strings.withingsCallbackScheme);
-                print(withingsCredentials);
-              },
-              child: Text('Tap to authorize'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                WithingsCredentials? newWithingsCredentials = await WithingsConnector.refreshToken(
+            print(withingsCredentials);
+          },
+          child: Text('Tap to authorize'),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            WithingsCredentials? newWithingsCredentials =
+                await WithingsConnector.refreshToken(
                     clientID: Strings.withingsClientID,
                     clientSecret: Strings.withingsClientSecret,
-                    withingsCredentials: WithingsCredentials(userID: '...', withingsAccessToken: '...', withingsRefreshToken: '...'), //put here the WithingsCredentials object to refresh the token
+                    withingsRefreshToken: '', //insert here the refresh token
                     );
-                print(newWithingsCredentials);
-              },
-              child: Text('Refresh token'),
-            ),
+            print(newWithingsCredentials);
+          },
+          child: Text('Refresh token'),
+        ),
       ],
     );
   }

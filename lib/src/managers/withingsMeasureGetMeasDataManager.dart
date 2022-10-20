@@ -15,17 +15,14 @@ class WithingsMeasureGetMeasDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsMeasureGetMeasData ret = _extractWithingsMeasureGetMeasData(response);
+    WithingsMeasureGetMeasData ret =
+        _extractWithingsMeasureGetMeasData(response);
     return ret;
   } // fetch
 
   /// A private method that extracts [WithingsMeasureGetMeasData] from the given response.
   WithingsMeasureGetMeasData _extractWithingsMeasureGetMeasData(
       dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsMeasureGetMeasData.fromJson(response);
-    } else {
-      return WithingsMeasureGetMeasData();
-    }
+    return WithingsMeasureGetMeasData.fromJson(response);
   } // _extractWithingsMeasureGetMeasData
 } // WithingsMeasureGetMeasDataManager

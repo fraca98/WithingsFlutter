@@ -6,7 +6,8 @@ class WithingsMeasureGetWorkoutsDataManager extends WithingsDataManager {
   WithingsMeasureGetWorkoutsDataManager();
 
   @override
-  Future<WithingsMeasureGetWorkoutsData> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsMeasureGetWorkoutsData> fetch(
+      WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -15,7 +16,8 @@ class WithingsMeasureGetWorkoutsDataManager extends WithingsDataManager {
     logger.i('$response');
 
     //Extract data and return them
-    WithingsMeasureGetWorkoutsData ret = _extractWithingsMeasureGetWorkoutsData(response);
+    WithingsMeasureGetWorkoutsData ret =
+        _extractWithingsMeasureGetWorkoutsData(response);
     return ret;
   } // fetch
 
@@ -57,10 +59,6 @@ class WithingsMeasureGetWorkoutsDataManager extends WithingsDataManager {
   /// A private method that extracts [WithingsMeasureGetWorkoutsData] from the given response.
   WithingsMeasureGetWorkoutsData _extractWithingsMeasureGetWorkoutsData(
       dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsMeasureGetWorkoutsData.fromJson(response);
-    } else {
-      return WithingsMeasureGetWorkoutsData();
-    }
+    return WithingsMeasureGetWorkoutsData.fromJson(response);
   } // _extractWithingsMeasureGetworkoutsData
 } // WithingsMeasureGetWorkoutsDataManager

@@ -19,7 +19,8 @@ class WithingsHeartListDataManager extends WithingsDataManager {
     return ret;
   } // fetch
 
-  Future<WithingsHeartListData> fetchAutoOffset(WithingsAPIURL withingsUrl) async {
+  Future<WithingsHeartListData> fetchAutoOffset(
+      WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
     // Debugging
@@ -54,11 +55,7 @@ class WithingsHeartListDataManager extends WithingsDataManager {
 
   /// A private method that extracts [WithingsHeartListData] from the given response.
   WithingsHeartListData _extractWithingsHeartListData(dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsHeartListData.fromJson(response);
-    } else {
-      return WithingsHeartListData();
-    }
+    return WithingsHeartListData.fromJson(response);
   } // _extractWithingsHeartListData
 }
  // WithingsHeartListDataManager

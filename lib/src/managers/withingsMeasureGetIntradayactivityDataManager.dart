@@ -5,9 +5,10 @@ import 'package:withings_flutter/withings_flutter.dart';
 class WithingsMeasureGetIntradayactivityDataManager
     extends WithingsDataManager {
   WithingsMeasureGetIntradayactivityDataManager();
-  
+
   @override
-  Future<WithingsMeasureGetIntradayactivityData> fetch(WithingsAPIURL withingsUrl) async {
+  Future<WithingsMeasureGetIntradayactivityData> fetch(
+      WithingsAPIURL withingsUrl) async {
     // Get the response
     final response = await getResponse(withingsUrl);
 
@@ -24,10 +25,6 @@ class WithingsMeasureGetIntradayactivityDataManager
   /// A private method that extracts [WithingsMeasureGetIntradayactivityData] from the given response.
   WithingsMeasureGetIntradayactivityData
       _extractWithingsMeasureGetaintradayactivityData(dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsMeasureGetIntradayactivityData.fromJson(response);
-    } else {
-      return WithingsMeasureGetIntradayactivityData();
-    }
+    return WithingsMeasureGetIntradayactivityData.fromJson(response);
   } // _extractWithingsMeasureGetaIntradayactivityData
 } // WithingsMeasureGetaIntradayactivityDataManager

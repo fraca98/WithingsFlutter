@@ -21,11 +21,7 @@ class WithingsSleepGetDataManager extends WithingsDataManager {
 
   /// A private method that extracts [WithingsSleepGetData] from the given response.
   WithingsSleepGetData _extractWithingsSleepGetData(dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsSleepGetData.fromJson(response);
-    } else {
-      return WithingsSleepGetData();
-    }
+    return WithingsSleepGetData.fromJson(response);
   } // _extractWithingsSleepGetData
 }
  // WithingsSleepGetDataManager

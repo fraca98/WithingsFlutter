@@ -21,11 +21,7 @@ class WithingsHeartGetDataManager extends WithingsDataManager {
 
   /// A private method that extracts [WithingsHeartGetData] from the given response.
   WithingsHeartGetData _extractWithingsHeartGetData(dynamic response) {
-    if (response['status'] == 0) {
-      return WithingsHeartGetData.fromJson(response);
-    } else {
-      return WithingsHeartGetData();
-    }
+    return WithingsHeartGetData.fromJson(response);
   } // _extractWithingsHeartGetData
 }
  // WithingsHeartGetDataManager
