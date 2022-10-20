@@ -36,7 +36,7 @@ class WithingsMeasureGetIntradayactivityData implements WithingsData {
   @override
   String toString() {
     return (StringBuffer('WithingsMeasureGetIntradayactivityData(')
-          ..write('series: $status, ')
+          ..write('status: $status, ')
           ..write('series:  $series, ')
           ..write(')'))
         .toString();
