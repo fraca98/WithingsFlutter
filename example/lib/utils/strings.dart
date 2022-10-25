@@ -17,7 +17,7 @@ class Strings {
   static const String withingsClientSecret = ''; //put here your withingsClientSecret
 
   /// Auth Uri
-  static const String withingsRedirectUri = 'example://withings/auth'; //put here your withingsRedirectUri
+  static const String withingsRedirectUri = ''; //put here your withingsRedirectUri
 
   /// Callback scheme
   static const String withingsCallbackScheme = 'example'; //put here your withingsCallbackScheme
