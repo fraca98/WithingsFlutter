@@ -2,6 +2,7 @@ name: withings_flutter
 description: A Flutter package to make your life easier when dealing with Withings APIs.
 version: 1.0.0
 homepage: https://github.com/fraca98/WithingsFlutter
+documentation: https://fraca98.github.io/WithingsFlutter/
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
