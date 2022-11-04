@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:withings_flutter/src/urls/withingsAuthAPIURL.dart';

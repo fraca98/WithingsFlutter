@@ -28,7 +28,7 @@ export 'package:withings_flutter/src/managers/withingsHeartGetDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsHeartListDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsSleepGetDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsSleepGetSummaryDataManager.dart';
-export 'package:withings_flutter/src/managers/withingsMeasureGetactivityDataManager.dart';
+export 'package:withings_flutter/src/managers/withingsMeasureGetActivityDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsMeasureGetIntradayactivityDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsMeasureGetMeasDataManager.dart';
 export 'package:withings_flutter/src/managers/withingsMeasureGetWorkoutsDataManager.dart';
