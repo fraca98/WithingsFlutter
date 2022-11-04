@@ -4,7 +4,6 @@ import 'package:withings_flutter/withings_flutter.dart';
 /// constructors to be used to generate Withings Web APIs urls to fetch
 /// [WithingsHeartListData],[WithingsHeartGetData]
 class WithingsHeartAPIURL extends WithingsAPIURL {
-
   ///Default [WithingsHeartAPIURL] constructor
   WithingsHeartAPIURL(
       {String? url, Map<String, dynamic>? data, String? authorizationHeader}) {

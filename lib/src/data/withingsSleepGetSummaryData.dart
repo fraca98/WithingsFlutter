@@ -16,7 +16,8 @@ class WithingsSleepGetSummaryData implements WithingsData {
   int? offset;
 
   /// Default [WithingsSleepGetSummaryData] constructor
-  WithingsSleepGetSummaryData({this.status, this.series, this.more, this.offset});
+  WithingsSleepGetSummaryData(
+      {this.status, this.series, this.more, this.offset});
 
   WithingsSleepGetSummaryData.fromJson(Map<String, dynamic> json) {
     status = json['status'];

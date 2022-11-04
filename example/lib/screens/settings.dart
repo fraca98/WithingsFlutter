@@ -28,10 +28,10 @@ class Settings extends StatelessWidget {
           onPressed: () async {
             WithingsCredentials? newWithingsCredentials =
                 await WithingsConnector.refreshToken(
-                    clientID: Strings.withingsClientID,
-                    clientSecret: Strings.withingsClientSecret,
-                    withingsRefreshToken: '', //insert here the refresh token
-                    );
+              clientID: Strings.withingsClientID,
+              clientSecret: Strings.withingsClientSecret,
+              withingsRefreshToken: '', //insert here the refresh token
+            );
             print(newWithingsCredentials);
           },
           child: Text('Refresh token'),

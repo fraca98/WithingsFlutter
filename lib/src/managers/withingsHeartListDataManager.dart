@@ -58,4 +58,4 @@ class WithingsHeartListDataManager extends WithingsDataManager {
     return WithingsHeartListData.fromJson(response);
   } // _extractWithingsHeartListData
 }
- // WithingsHeartListDataManager
+// WithingsHeartListDataManager

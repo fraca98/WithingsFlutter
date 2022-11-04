@@ -24,4 +24,4 @@ class WithingsSleepGetDataManager extends WithingsDataManager {
     return WithingsSleepGetData.fromJson(response);
   } // _extractWithingsSleepGetData
 }
- // WithingsSleepGetDataManager
+// WithingsSleepGetDataManager

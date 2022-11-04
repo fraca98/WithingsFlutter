@@ -83,8 +83,8 @@ class WithingsConnector {
       final code = Uri.parse(result).queryParameters['code'];
 
       // Get the state (check if spoofed or not)
-      final returned_state = Uri.parse(result).queryParameters['state'];
-      if (returned_state != state) {
+      final returnedState = Uri.parse(result).queryParameters['state'];
+      if (returnedState != state) {
         print('The connection has been spoofed!');
         return withingsCredentials;
       }

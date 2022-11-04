@@ -24,4 +24,4 @@ class WithingsHeartGetDataManager extends WithingsDataManager {
     return WithingsHeartGetData.fromJson(response);
   } // _extractWithingsHeartGetData
 }
- // WithingsHeartGetDataManager
+// WithingsHeartGetDataManager

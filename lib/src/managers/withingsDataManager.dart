@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:withings_flutter/withings_flutter.dart';
 
 abstract class WithingsDataManager {
-
   /// Default constructor
   WithingsDataManager();
 

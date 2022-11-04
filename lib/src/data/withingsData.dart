@@ -3,5 +3,4 @@
 abstract class WithingsData {
   /// Returns the status of a [WithingsData]
   String toString();
-  
 } // WithingsData
