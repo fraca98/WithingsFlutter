@@ -10,6 +10,10 @@ For general information about developing packages, see the Dart guide for
 and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
+# WithingsFlutter
+![Pub Likes](https://img.shields.io/pub/likes/withings_flutter?logo=flutter)
+![Pub Points](https://img.shields.io/pub/points/withings_flutter?logo=Flutter)
+![Pub Popularity](https://img.shields.io/pub/popularity/withings_flutter?logo=Flutter)
 
 A Flutter package to make your life easier when dealing with Withings APIs.
 
