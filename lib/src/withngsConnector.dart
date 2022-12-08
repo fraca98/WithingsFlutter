@@ -121,7 +121,7 @@ class WithingsConnector {
           withingsRefreshToken: refreshToken,
           expires: expiresin);
     } catch (e) {
-      //print(e);
+      rethrow;
     } // catch
     return withingsCredentials;
   } // authorize
