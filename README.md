@@ -15,7 +15,7 @@ and the Flutter guide for
 ![Pub Points](https://img.shields.io/pub/points/withings_flutter?logo=Flutter)
 ![Pub Popularity](https://img.shields.io/pub/popularity/withings_flutter?logo=Flutter)
 
-A Flutter package to make your life easier when dealing with Withings APIs.
+A Flutter package to make your life easier when dealing with Withings Web APIs.
 
 # Getting started 
 
